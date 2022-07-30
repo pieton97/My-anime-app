@@ -14,6 +14,7 @@ function Home(props) {
             value={props.search}
             onChange={(e) => props.setSearch(e.target.value)}
           />
+          <button type="submit">Search</button>
         </form>
       </div>
 

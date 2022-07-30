@@ -1,6 +1,8 @@
 footer {
+  position: relative;
   left: 0;
   bottom: 0;
+  right: 0;
   background-color: rgb(35, 0, 163);
   color: aqua;
   text-align: center;

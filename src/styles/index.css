@@ -2,9 +2,12 @@
   margin: 0;
   padding: 0;
   font-family:Verdana, Geneva, Tahoma, sans-serif;
+  box-sizing: border-box;
 }
 
 body{
+  min-height: 100vh;
   background-color: grey;
   background-image: linear-gradient(to right, rgb(21, 37, 37) , rgb(58, 92, 245));
+  padding-top: 10%;
 }
