@@ -10,31 +10,44 @@ function App() {
   const [search, setSearch] = useState("");
   const [testApi, setTestApi] = useState([]);
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    fetchAnime(search);
+  };
+
+  const buttonSearch = (e) => {
+    e.preventDefault();
+    fetchAnimeByGenre(e.target.value)
+  }
+
   // Fetching top anime (by popularity) from jikan API
   const getTopAnime = async () => {
     const baseURL = `https://api.jikan.moe/v4/top/anime`;
-    const baseURL2 = `https://api.jikan.moe/v3/top/anime/1/bypopularity`;
     const res = await fetch(baseURL)
     const data = await res.json();
 
     setTopAnime(data.data);
   };
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-
-    fetchAnime(search);
-  };
-  
   // Fetching searched anime from jikan API
   const fetchAnime = async (anime_name) => {
-    const baseURL = `https://api.jikan.moe/v4/anime?q=${anime_name}&order_by=popularity&sort=asc&sfw=true`;
-    const baseURL2 = `https://api.jikan.moe/v3/search/anime?q=${anime_name}&order_by=title&sort=asc&limit=10`;
+    const baseURL = `https://api.jikan.moe/v4/anime?q=${anime_name}&order_by=rank&sort=asc&min_score=4&sfw=true`;
     const res = await fetch(baseURL)
     const data = await res.json();
 
     setAnimeList(data.data);
+    setTopAnime(data.data);
   };
+
+  // Fetching anime by genre from Jikan API
+  const fetchAnimeByGenre = async (genreID) => {
+    const baseURL = `https://api.jikan.moe/v4/anime?genres=${genreID}&min_score=4&order_by=score&sort=desc&sfw=true`;
+    const res = await fetch(baseURL)
+    const data = await res.json();
+
+    setAnimeList(data.data);
+    setTopAnime(data.data);
+  }
 
   // get getTopAnime() as the site render
   useEffect(() => {
@@ -51,8 +64,8 @@ function App() {
     console.log('test was ran');
 
     const baseURL = `https://api.jikan.moe/v4/anime?q=${anime_name}&order_by=title&sort=asc&sfw=true`;
-    const baseURL2 = `https://api.jikan.moe/v4/top/anime`;
-    const baseURL3 = `https://api.jikan.moe/v3/top/anime/1/bypopularity`;
+    const baseURL2 = `https://api.jikan.moe/v4/anime?genres=1&order_by=title&sort=asc&sfw=true`;
+    const baseURL3 = `https://api.jikan.moe/v4/genres/anime`;
     const res = await fetch(baseURL2)
     const data = await res.json();
 
@@ -77,14 +90,13 @@ function App() {
 
       <button onClick={testSearch}>Test btn, click me!</button>
 
-      {/*  Main Content  */}
       <Home
-        // passing props
         handleSearch={handleSearch}
         search={search}
         setSearch={setSearch}
         animeList={animeList}
         topAnime={topAnime}
+        buttonSearch={buttonSearch}
       />
 
       <Footer />

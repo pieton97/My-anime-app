@@ -1,6 +1,6 @@
 import "../styles/Footer.css";
 
-function Footer() {
+const Footer = () => {
  return (
   <footer>
     <p>Copyright 2022 Dac Nguyen. All rights reserved.</p>

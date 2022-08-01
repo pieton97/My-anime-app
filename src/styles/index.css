@@ -7,7 +7,6 @@
 
 body{
   min-height: 100vh;
-  background-color: grey;
-  background-image: linear-gradient(to right, rgb(21, 37, 37) , rgb(58, 92, 245));
+  background-color: rgb(214, 214, 214);
   padding-top: 10%;
 }
