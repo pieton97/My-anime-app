@@ -2,10 +2,10 @@ main {
   max-width: 1100px;
   min-height: 100vh;
   margin: 0 auto;
+  padding-top: 60px;
 }
 
 .home {
-  padding-top: 5%;
   margin: 30px;
 }
 

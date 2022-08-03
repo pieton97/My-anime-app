@@ -4,15 +4,13 @@ import AnimeCard from "../components/AnimeCard";
 import SearchBtns from "../components/SearchBtns";
 
 const Home = (props) => {
- const searcFunc = (e) => {
+ const searchByButton = (e) => {
   if (e.target.nodeName === "BUTTON") {
     props.buttonSearch(e);
   }
  };
-
- const testGrab = (animeKey) => {
-  console.log('hellor', animeKey);
-  // console.log(e.currentTarget);
+ const openAnime = (mal_id) => {
+  props.openClickedAnime(mal_id);
  }
 
  return (
@@ -21,7 +19,7 @@ const Home = (props) => {
     <form className="search-box" onSubmit={props.handleSearch}>
      <input
       type="search"
-      placeholder="Search ..."
+      placeholder="Search anime..."
       required
       value={props.search}
       onChange={(e) => props.setSearch(e.target.value)}
@@ -30,19 +28,19 @@ const Home = (props) => {
     </form>
    </div>
 
-   <SearchBtns test22={searcFunc} />
+   <SearchBtns searchByButton={searchByButton} />
 
    {/* if there is no text in the search bar it will show top anime(by popularity)and on searching it will show search results */}
    {!props.search ? (
     <div className="card-main">
      {props.topAnime.map((anime) => (
-      <AnimeCard anime={anime} key={anime.mal_id} modalKey={anime.mal_id} testGrab={testGrab} />
+      <AnimeCard anime={anime} key={anime.mal_id} animeKey={anime.mal_id} openAnime={openAnime} />
      ))}
     </div>
    ) : (
     <div className="card-main">
      {props.animeList.map((anime) => (
-      <AnimeCard anime={anime} key={anime.mal_id} />
+      <AnimeCard anime={anime} key={anime.mal_id} animeKey={anime.mal_id} openAnime={openAnime} />
      ))}
     </div>
    )}

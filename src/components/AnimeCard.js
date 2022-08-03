@@ -4,9 +4,7 @@ const AnimeCard = (props) => {
  // Anime Cards
  return (
   <>
-  {/* href={props.anime.url}  */}
-  {/* <a className="card-body" rel="noreferrer nofollow" target="_blank" alt={props.anime.title}> */}
-  <div className="anime-cont card-body" onClick={() => props.testGrab(props.modalKey)}>
+  <div className="anime-cont card-body" onClick={() => props.openAnime(props.animeKey)}>
    <figure className="card-fig">
     <img className="card-image" src={props.anime.images.jpg.large_image_url} alt="Anime pic" />
    </figure>
@@ -20,7 +18,6 @@ const AnimeCard = (props) => {
     <p>members: {props.anime.members}</p>
    </div>
   </div>
-  {/* </a> */}
   </>
  );
 }

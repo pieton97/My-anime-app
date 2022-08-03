@@ -3,7 +3,7 @@ import "../styles/SearchBtns.css";
 
 function SearchBtns(props) {
   return (
-    <div className="search-buttons" onClick={props.test22}>
+    <div className="search-buttons" onClick={props.searchByButton}>
       <button value="1">Action</button>
       <button value="2">Adventure</button>
       <button value="4">Comedy</button>
