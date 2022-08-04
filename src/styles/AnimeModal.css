@@ -59,10 +59,36 @@
   height: 100%;
   object-fit: cover;
 }
+.action-btn {
+  text-decoration: none;
+  color: white;
+  display: block;
+  text-align: center;
+  border-radius: 3px;
+  width: 100%;
+  background-color: rgb(137, 137, 255);
+  margin: 5px auto;
+  padding: 6px;
+}
+.action-btn:hover {
+  background-color: rgb(154, 154, 255);
+}
 
 .right-body {
   width: 100%;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
   background-color: rgba(173, 216, 230, 0.527);
   
+}
+
+.show-synopsis {
+  display: block;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  margin: 3px 0;
+  font-size: 11px;
 }

@@ -18,6 +18,7 @@ function App() {
 
  const handleSearch = (e) => {
   e.preventDefault();
+  console.log("search was ran");
   fetchAnime(search);
  };
 
@@ -56,11 +57,54 @@ function App() {
 
  // Fetching anime user has clicked on
  const fetchClickedAnime = async (mal_id) => {
-  const baseURL3 = `https://api.jikan.moe/v4/anime/${mal_id}`;
-  const res = await fetch(baseURL3);
-  const data = await res.json();
+  // fetch anime details, variety of info is from different API endpoints
+  try {
+    console.time("timer1");
+    const detailsURL = `https://api.jikan.moe/v4/anime/${mal_id}`;
+    const charactersURL = `https://api.jikan.moe/v4/anime/${mal_id}/characters`;
+    const recommendationsURL = `https://api.jikan.moe/v4/anime/${mal_id}/recommendations`;
+    
+    const [details, characters, recommendations] = await Promise.all([
+      fetch(detailsURL).then(res => res.json()),
+      fetch(charactersURL).then(res => res.json()),
+      fetch(recommendationsURL).then(res => res.json()),
+    ]);
+    
+    // console.log(
+    //   "anime:", details,
+    //   "characters:", characters,
+    //   "test:", recommendations,
+    // );
+    setClickedAnime(details);
+    console.timeEnd("timer1")
+  } catch (err) {
+    console.log(err);
+  };
+  // try {
+  //   console.time("timer1");
+  //   const urls = [
+  //     `https://api.jikan.moe/v4/anime/${mal_id}`,
+  //     `https://api.jikan.moe/v4/anime/${mal_id}/characters`,
+  //     `https://api.jikan.moe/v4/anime/${mal_id}/recommendations`,
+  //   ];
 
-  setClickedAnime(data);
+  //   const requests = urls.map((url) => fetch(url));
+  //   const responses = await Promise.all(requests);
+  //   const json = responses.map((response) => response.json());
+  //   const [details, characters,recommendations]  = await Promise.all(json);
+
+  //   console.log(
+  //     "anime:", details,
+  //     "characters:", characters,
+  //     "test:", recommendations
+  //   );
+  //   setClickedAnime(details);
+  //   console.timeEnd("timer1")
+  // }
+  // catch (errors) {
+  //   errors.forEach((error) => console.error(error));
+  // }
+
   setModalOpen(true);
  };
 
