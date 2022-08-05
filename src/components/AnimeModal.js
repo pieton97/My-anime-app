@@ -5,19 +5,22 @@ function AnimeModal({ setOpenModal, clickedAnime }) {
   const [showMore, setShowMore] = useState(false);
   const anime = clickedAnime.data;
 
-  const testFunc = () => {
-    console.log('hola aloha');
-  }
+  // const testFunc = () => {
+  //   console.log('hola aloha');
+  // }
 
   // left body
   let genreString = "";
   anime.genres.forEach(genre => {
-    genreString += `<span onClick="alert('mouseover')" >${genre.name}, </span>`
+    genreString += `<a href=${genre.url} target="_blank" >${genre.name}, </a>`
+  });
+  let themeString = "";
+  anime.themes.forEach(theme => {
+    themeString += `<a href=${theme.url} target="_blank" >${theme.name}, </a>`
   });
 
   // right body
   const synopsis = anime.synopsis.split(". ").join(". \n\n");
-
   
  return (
   <div className="modalBackground" onClick={() => setOpenModal(false)}>
@@ -42,16 +45,20 @@ function AnimeModal({ setOpenModal, clickedAnime }) {
         <p><strong>English</strong>: {anime.title_english}</p>
         <p><strong>Japanese</strong>: {anime.title_japanese}</p>
       </div>
-      <div>
+      <div className="info-container">
         <h3>Information</h3>
         <hr></hr>
+        <p>Type: {anime.type}</p>
+        <p>Status: {anime.status}</p>
         <p>Aired: {anime.aired.string}</p>
         <p>Year: {anime.year} {anime.season}</p>
-        <p>Status: {anime.status}</p>
         <p>Episodes: {anime.episodes}</p>
         <p>Duration: {anime.duration}</p>
         <p>Studios: <a href={anime.studios[0].url} rel="noreferrer noopener" target="_blank">{anime.studios[0].name}</a></p>
+        <p>Source: {anime.source}</p>
         <p>Genre: <span dangerouslySetInnerHTML={{__html: genreString}} /></p>
+        <p>Theme: <span dangerouslySetInnerHTML={{__html: themeString}} /></p>
+        <p>Rating: {anime.rating}</p>
       </div>
 
      </div>
@@ -67,9 +74,15 @@ function AnimeModal({ setOpenModal, clickedAnime }) {
           {showMore ? "Show less" : "Show more"}
         </button>
       </p>
-      
-      <p></p>
-      
+      {anime.trailer.embed_url ? 
+        <iframe 
+        title={anime.title_english + " trailer"}
+        src={anime.trailer.embed_url}
+        /> : "" 
+      }
+
+      <p>{synopsis}</p>
+      <p>{synopsis}</p>
 
      </div>
 

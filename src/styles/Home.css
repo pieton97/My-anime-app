@@ -9,6 +9,26 @@ main {
   margin: 30px;
 }
 
+.home-img-container {
+  display: block;
+  width: 75%;
+  height: 400px;
+  overflow: hidden;
+  margin: 10px auto;
+  box-shadow: 0 -3px 7px rgba(117, 117, 117, 0.685);
+}
+.home .home-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+  object-fit: cover;
+  object-position: center;
+  transition: transform .5s ease;
+}
+.home .home-img:hover {
+  transform: scale(1.05); 
+}
+
 input {
   width: 100%;
   border: 2px solid #9252a5;

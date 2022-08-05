@@ -1,21 +1,25 @@
 import React from "react";
-import "../styles/Home.css";
 import AnimeCard from "../components/AnimeCard";
 import SearchBtns from "../components/SearchBtns";
+import "../styles/Home.css";
+import homeImage from "../images/overlord-albedo.jpg";
 
 const Home = (props) => {
  const searchByButton = (e) => {
   if (e.target.nodeName === "BUTTON") {
-    props.buttonSearch(e);
+   props.buttonSearch(e);
   }
  };
  const openAnime = (mal_id) => {
   props.openClickedAnime(mal_id);
- }
+ };
 
  return (
   <main>
    <div className="home">
+    <div className="home-img-container">
+     <img className="home-img" src={homeImage} alt="overlord-img"></img>
+    </div>
     <form className="search-box" onSubmit={props.handleSearch}>
      <input
       type="search"
@@ -28,24 +32,24 @@ const Home = (props) => {
     </form>
    </div>
 
+   <h3>Hi there! welcome to MyAnimeApp. This app was made for you to browse and find interesting animes that you may have never seen before. Get started by searching an anime or click any anime below for recommendations.</h3>
+
+   <button>Top Anime This Season</button>
+   <button>Top Anime Series</button>
    <SearchBtns searchByButton={searchByButton} />
 
-   {/* if there is no text in the search bar it will show top anime(by popularity)and on searching it will show search results */}
-   {!props.search ? (
-    <div className="card-main">
-     {props.topAnime.map((anime) => (
-      <AnimeCard anime={anime} key={anime.mal_id} animeKey={anime.mal_id} openAnime={openAnime} />
-     ))}
-    </div>
-   ) : (
-    <div className="card-main">
-     {props.animeList.map((anime) => (
-      <AnimeCard anime={anime} key={anime.mal_id} animeKey={anime.mal_id} openAnime={openAnime} />
-     ))}
-    </div>
-   )}
+   <div className="card-main">
+    {props.animeList.map((anime) => (
+     <AnimeCard
+      anime={anime}
+      key={anime.mal_id}
+      animeKey={anime.mal_id}
+      openAnime={openAnime}
+     />
+    ))}
+   </div>
   </main>
  );
-}
+};
 
 export default Home;

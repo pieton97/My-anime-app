@@ -6,15 +6,9 @@ import AnimeModal from "./components/AnimeModal.js";
 
 function App() {
  const [animeList, setAnimeList] = useState([]);
- const [topAnime, setTopAnime] = useState([]);
  const [search, setSearch] = useState("");
  const [modalOpen, setModalOpen] = useState(false);
  const [clickedAnime, setClickedAnime] = useState([]);
-
- const buttonSearch = (e) => {
-  e.preventDefault();
-  fetchAnimeByGenre(e.target.value);
- };
 
  const handleSearch = (e) => {
   e.preventDefault();
@@ -26,13 +20,19 @@ function App() {
   fetchClickedAnime(mal_id);
  };
 
+ const buttonSearch = (e) => {
+  e.preventDefault();
+  fetchAnimeByGenre(e.target.value);
+ };
+
+
  // Fetching top anime (by popularity) from jikan API
  const getTopAnime = async () => {
   const baseURL = `https://api.jikan.moe/v4/top/anime?page=1`;
   const res = await fetch(baseURL);
   const data = await res.json();
 
-  setTopAnime(data.data);
+  setAnimeList(data.data);
  };
 
  // Fetching searched anime from jikan API
@@ -42,7 +42,6 @@ function App() {
   const data = await res.json();
 
   setAnimeList(data.data);
-  setTopAnime(data.data);
  };
 
  // Fetching anime by genre from Jikan API
@@ -52,58 +51,37 @@ function App() {
   const data = await res.json();
 
   setAnimeList(data.data);
-  setTopAnime(data.data);
  };
 
  // Fetching anime user has clicked on
  const fetchClickedAnime = async (mal_id) => {
   // fetch anime details, variety of info is from different API endpoints
   try {
-    console.time("timer1");
     const detailsURL = `https://api.jikan.moe/v4/anime/${mal_id}`;
     const charactersURL = `https://api.jikan.moe/v4/anime/${mal_id}/characters`;
     const recommendationsURL = `https://api.jikan.moe/v4/anime/${mal_id}/recommendations`;
+    const tester2 = `https://api.jikan.moe/v4/anime/${mal_id}/relations`;
     
-    const [details, characters, recommendations] = await Promise.all([
+    console.time("timer333"); 
+    const results = await Promise.all([
       fetch(detailsURL).then(res => res.json()),
       fetch(charactersURL).then(res => res.json()),
       fetch(recommendationsURL).then(res => res.json()),
+      fetch(tester2).then(res => res.json()),
     ]);
-    
-    // console.log(
-    //   "anime:", details,
-    //   "characters:", characters,
-    //   "test:", recommendations,
-    // );
+    const [details, characters, recommendations, tester] = results;
+    console.timeEnd("timer333")
+
+    console.log(
+      "anime:", details,
+      "characters:", characters,
+      "test:", recommendations,
+      "teseter:", tester,
+    );
     setClickedAnime(details);
-    console.timeEnd("timer1")
   } catch (err) {
     console.log(err);
   };
-  // try {
-  //   console.time("timer1");
-  //   const urls = [
-  //     `https://api.jikan.moe/v4/anime/${mal_id}`,
-  //     `https://api.jikan.moe/v4/anime/${mal_id}/characters`,
-  //     `https://api.jikan.moe/v4/anime/${mal_id}/recommendations`,
-  //   ];
-
-  //   const requests = urls.map((url) => fetch(url));
-  //   const responses = await Promise.all(requests);
-  //   const json = responses.map((response) => response.json());
-  //   const [details, characters,recommendations]  = await Promise.all(json);
-
-  //   console.log(
-  //     "anime:", details,
-  //     "characters:", characters,
-  //     "test:", recommendations
-  //   );
-  //   setClickedAnime(details);
-  //   console.timeEnd("timer1")
-  // }
-  // catch (errors) {
-  //   errors.forEach((error) => console.error(error));
-  // }
 
   setModalOpen(true);
  };
@@ -127,7 +105,6 @@ function App() {
      search={search}
      setSearch={setSearch}
      animeList={animeList}
-     topAnime={topAnime}
      buttonSearch={buttonSearch}
      openClickedAnime={openClickedAnime}
     />
