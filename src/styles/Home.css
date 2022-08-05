@@ -9,6 +9,14 @@ main {
   margin: 30px;
 }
 
+.preset-search-btns {
+  margin: 5px;
+}
+.preset-search-btns button {
+  margin: 5px 3px;
+  padding: 5px;
+}
+
 .home-img-container {
   display: block;
   width: 75%;

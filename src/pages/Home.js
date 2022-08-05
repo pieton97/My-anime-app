@@ -33,11 +33,16 @@ const Home = (props) => {
    </div>
 
    <h3>Hi there! welcome to MyAnimeApp. This app was made for you to browse and find interesting animes that you may have never seen before. Get started by searching an anime or click any anime below for recommendations.</h3>
-
-   <button>Top Anime This Season</button>
-   <button>Top Anime Series</button>
+   <div className="preset-search-btns">
+    <button>Top Anime This Season</button>
+    <button>Top Anime Series</button>
+   </div>
    <SearchBtns searchByButton={searchByButton} />
 
+   <div>
+    <h3>{props.searchResult}</h3>
+   </div>
+   <hr />
    <div className="card-main">
     {props.animeList.map((anime) => (
      <AnimeCard

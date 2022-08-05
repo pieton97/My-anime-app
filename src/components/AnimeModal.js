@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/AnimeModal.css"
 
-function AnimeModal({ setOpenModal, clickedAnime }) {
+function AnimeModal({ setOpenModal, clickedAnime, clickedRelatedAnime }) {
   const [showMore, setShowMore] = useState(false);
   const anime = clickedAnime.data;
 
@@ -16,11 +16,15 @@ function AnimeModal({ setOpenModal, clickedAnime }) {
   });
   let themeString = "";
   anime.themes.forEach(theme => {
-    themeString += `<a href=${theme.url} target="_blank" >${theme.name}, </a>`
+    themeString += `<p href=${theme.url} target="_blank" >${theme.name}, </p>`
   });
-
+  
   // right body
   const synopsis = anime.synopsis.split(". ").join(". \n\n");
+  let relatedAnime = clickedRelatedAnime.data.map(anime => {
+    return <p key={anime.entry[0].mal_id}>{anime.relation}: {anime.entry[0].name} ({anime.entry[0].type})</p>
+  });
+  
   
  return (
   <div className="modalBackground" onClick={() => setOpenModal(false)}>
@@ -31,6 +35,7 @@ function AnimeModal({ setOpenModal, clickedAnime }) {
     
     <div className="body">
      <div className="left-body">
+      {/* info on left side of the modal */}
       <div className="modal-img-container">
         <img src={anime.images.jpg.large_image_url} alt="Anime pic" />
       </div>
@@ -57,7 +62,10 @@ function AnimeModal({ setOpenModal, clickedAnime }) {
         <p>Studios: <a href={anime.studios[0].url} rel="noreferrer noopener" target="_blank">{anime.studios[0].name}</a></p>
         <p>Source: {anime.source}</p>
         <p>Genre: <span dangerouslySetInnerHTML={{__html: genreString}} /></p>
-        <p>Theme: <span dangerouslySetInnerHTML={{__html: themeString}} /></p>
+        {themeString ? 
+          <p>Theme: <span dangerouslySetInnerHTML={{__html: themeString}} /></p> : ""
+        }
+        
         <p>Rating: {anime.rating}</p>
       </div>
 
@@ -68,6 +76,8 @@ function AnimeModal({ setOpenModal, clickedAnime }) {
       <p>Score: {anime.score}</p>
       <p>Rank: {anime.rank}</p>
       <p>Members: {anime.members}</p>
+      <h3>Synopsis:</h3>
+      <hr />
       <p>
         {showMore ? synopsis : `${synopsis.substring(0, 250)}...`}
         <button className="show-synopsis" onClick={() => setShowMore(!showMore)}>
@@ -80,9 +90,11 @@ function AnimeModal({ setOpenModal, clickedAnime }) {
         src={anime.trailer.embed_url}
         /> : "" 
       }
-
-      <p>{synopsis}</p>
-      <p>{synopsis}</p>
+      <div></div>
+      <h3>Related Anime</h3>
+      <hr />
+      {relatedAnime}
+      <p></p>
 
      </div>
 

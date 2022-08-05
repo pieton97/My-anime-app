@@ -7,13 +7,16 @@ import AnimeModal from "./components/AnimeModal.js";
 function App() {
  const [animeList, setAnimeList] = useState([]);
  const [search, setSearch] = useState("");
+ const [searchResult, setSearchResult] = useState("");
  const [modalOpen, setModalOpen] = useState(false);
  const [clickedAnime, setClickedAnime] = useState([]);
+ const [clickedRelatedAnime, setclickedRelatedAnime] = useState([]);
 
  const handleSearch = (e) => {
   e.preventDefault();
   console.log("search was ran");
   fetchAnime(search);
+  setSearchResult(`Results for: ${search}`)
  };
 
  const openClickedAnime = (mal_id) => {
@@ -23,8 +26,8 @@ function App() {
  const buttonSearch = (e) => {
   e.preventDefault();
   fetchAnimeByGenre(e.target.value);
+  setSearchResult(`Results for: ${e.target.innerText}`)
  };
-
 
  // Fetching top anime (by popularity) from jikan API
  const getTopAnime = async () => {
@@ -33,6 +36,7 @@ function App() {
   const data = await res.json();
 
   setAnimeList(data.data);
+  setSearchResult("Top Animes:")
  };
 
  // Fetching searched anime from jikan API
@@ -60,25 +64,26 @@ function App() {
     const detailsURL = `https://api.jikan.moe/v4/anime/${mal_id}`;
     const charactersURL = `https://api.jikan.moe/v4/anime/${mal_id}/characters`;
     const recommendationsURL = `https://api.jikan.moe/v4/anime/${mal_id}/recommendations`;
-    const tester2 = `https://api.jikan.moe/v4/anime/${mal_id}/relations`;
+    const relationsURL = `https://api.jikan.moe/v4/anime/${mal_id}/relations`;
     
     console.time("timer333"); 
     const results = await Promise.all([
       fetch(detailsURL).then(res => res.json()),
       fetch(charactersURL).then(res => res.json()),
       fetch(recommendationsURL).then(res => res.json()),
-      fetch(tester2).then(res => res.json()),
+      fetch(relationsURL).then(res => res.json()),
     ]);
-    const [details, characters, recommendations, tester] = results;
+    const [details, characters, recommendations, related] = results;
     console.timeEnd("timer333")
 
     console.log(
       "anime:", details,
       "characters:", characters,
       "test:", recommendations,
-      "teseter:", tester,
+      "teseter:", related,
     );
     setClickedAnime(details);
+    setclickedRelatedAnime(related);
   } catch (err) {
     console.log(err);
   };
@@ -97,13 +102,18 @@ function App() {
     <Header />
 
     {modalOpen && (
-     <AnimeModal setOpenModal={setModalOpen} clickedAnime={clickedAnime} />
+     <AnimeModal 
+      setOpenModal={setModalOpen} 
+      clickedAnime={clickedAnime} 
+      clickedRelatedAnime={clickedRelatedAnime} 
+     />
     )}
 
     <Home
      handleSearch={handleSearch}
      search={search}
      setSearch={setSearch}
+     searchResult={searchResult}
      animeList={animeList}
      buttonSearch={buttonSearch}
      openClickedAnime={openClickedAnime}
