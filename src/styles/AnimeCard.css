@@ -25,9 +25,8 @@
   overflow: hidden;
   border-top-left-radius: 3px 3px;
   border-top-right-radius: 3px 3px;
-  transition: transform .5s ease;
+  transition: transform .3s ease;
 }
-
 div.anime-cont:hover{
   background-color: rgb(44, 0, 114);
   color: white;

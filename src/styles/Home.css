@@ -24,6 +24,7 @@ main {
   overflow: hidden;
   margin: 10px auto;
   box-shadow: 0 -3px 7px rgba(117, 117, 117, 0.685);
+  cursor: pointer;
 }
 .home .home-img {
   width: 100%;
@@ -51,5 +52,10 @@ input {
 .card-main {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 32px;
+  margin-top: 12px;
+}
+
+/* temporary styling below */
+h3, h4 {
+  margin: 10px 0;
 }
