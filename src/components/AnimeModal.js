@@ -1,19 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import OpenImgModal from "./OpenImgModal";
 import "../styles/AnimeModal.css"
 
 const AnimeModal = ({ 
   setIsModalOpen, 
-  clickedAnime, 
-  clickedRelatedAnime, 
   openClickedAnime,
-  clickedRecommended
+  clickedAnimeInfo,
+  oprenPrev
 }) => {
   const [showMore, setShowMore] = useState(false);
   const [imgModal, setImgModal] = useState(false);
 
   // refactor for easy access to the anime array
-  const anime = clickedAnime.data;
+  const [details, relations, reccomends] = clickedAnimeInfo;
+  const anime = details.data;
+
+
+
+
+
 
   const openRelated = (mal_id, type) => {
     console.log(mal_id, type);
@@ -32,8 +37,8 @@ const AnimeModal = ({
    }
   };
   
-  // takes any array and returns array of random unique (n)results
   const returnRandomArr = (arr, n) => {
+    // takes any array and returns array of random unique (n)results
     var result = new Array(n),
       len = arr.length,
       taken = new Array(len);
@@ -47,11 +52,11 @@ const AnimeModal = ({
     return result;
   };
 
-  // returns 10 random reccomened anime if theres more than 10 avaiable
   const recommendedArray = (
-    clickedRecommended.data.length > 10 
-    ? returnRandomArr(clickedRecommended.data, 10) 
-    : clickedRecommended.data
+    // returns 10 random reccomened anime if theres more than 10 avaiable
+    reccomends.data.length > 10 
+    ? returnRandomArr(reccomends.data, 10) 
+    : reccomends.data
   );
 
   // left body refined JSX
@@ -65,7 +70,7 @@ const AnimeModal = ({
   
   // right body refined JSX
   const synopsis = anime.synopsis.split(". ").join(". \n\n");
-  let relatedAnime = clickedRelatedAnime.data.map(anime => {
+  let relatedAnime = relations.data.map(anime => {
    const mal_id = anime.entry[0].mal_id;
    const type = anime.entry[0].type;
    return (
@@ -100,6 +105,7 @@ const AnimeModal = ({
    )}
    <div className="modalContainer" onClick={e => e.stopPropagation()}>
     <div className="titleCloseBtn">
+     <button className="back-btn" onClick={oprenPrev}>Back previous</button>
      <button onClick={() => {setIsModalOpen(false)}}>X</button>
     </div>
 
@@ -167,7 +173,7 @@ const AnimeModal = ({
       <h3>Related Anime</h3>
       <hr />
       <div>{relatedAnime}</div>
-      <h3>Recommendations: ({clickedRecommended.data.length}) total</h3>
+      <h3>Recommendations: ({reccomends.data.length}) total</h3>
       <hr />
       <div onClick={openRecommended} className="reccomended-wrapper">
         {recommendedAnimes}

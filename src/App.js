@@ -9,14 +9,13 @@ const App = () => {
  const [animeList, setAnimeList] = useState([]);
  const [search, setSearch] = useState("");
  const [searchResult, setSearchResult] = useState("");
- //  opens modal, and the 3 'clicked' are for modal information
+ //  opens modal, and clicked anime information for modal
  const [isModalOpen, setIsModalOpen] = useState(false);
- const [clickedAnime, setClickedAnime] = useState([]);
- const [clickedRelatedAnime, setclickedRelatedAnime] = useState([]);
- const [clickedRecommended, setclickedRecommended] = useState([]);
+ const [clickedAnimeInfo, setClickedAnimeInfo] = useState([]);
+ const [clickedHistory, setClickedHistory] = useState([]);
  //  manages pagination of currentURL search type
  const [currentPage, setCurrentPage] = useState(1);
- const [maxPage, setMaxPage] = useState(0);
+ const [maxPage, setMaxPage] = useState();
  const [currentURL, setCurrentURL] = useState();
 
  const changePage = (type) => {
@@ -25,7 +24,7 @@ const App = () => {
    case "increment":
     newPage = currentPage + 1;
     if (newPage <= maxPage) setCurrentPage(newPage);
-    else console.log("you cant go above the max you silly kangaroo");
+    else console.log("you cant go above the max page you silly kangaroo");
     break;
    case "decrement":
     newPage = currentPage - 1;
@@ -49,10 +48,15 @@ const App = () => {
  }, [currentPage]);
 
  useEffect(() => {
-  // this resets current page when new type of search is ran
-  console.log("current URL changed, reseted currentPage");
+  // this resets current page when new type of fetch is ran
+  // console.log("current URL changed, reseted currentPage");
   currentURL ? setCurrentPage(1) : console.log("initial load success");
  }, [currentURL]);
+
+ useEffect(() => {
+  //  fetch top anime on site render, then display in result
+  fetchAnime("https://api.jikan.moe/v4/top/anime?", "Top anime series");
+}, []);
 
  const fetchNextPage = async () => {
   // fetches currentURL of currentPage, then display animes to result
@@ -60,35 +64,38 @@ const App = () => {
   const res = await fetch(baseURL);
   const data = await res.json();
 
-  console.log(`current page: ${currentPage}`, "test data:", data);
+  console.log("results data:", data.data);
   if (currentPage <= maxPage) setAnimeList(data.data);
-  else setCurrentPage(currentPage - 1);
-  console.log(currentURL(currentPage));
  };
-
- const openClickedAnime = (mal_id) => {
-  fetchClickedAnime(mal_id);
- };
-
+ 
  // Fetches url from Jikan api, then display animes in result
  const fetchAnime = async (baseURL, searchType) => {
-  const res = await fetch(baseURL);
-  const data = await res.json();
-
-  console.log("ran fetchAnime", data);
-  setAnimeList(data.data);
-  setCurrentURL(() => (dd) => `${baseURL}page=${dd}`);
-  setSearchResult(searchType + ` (${data.pagination.items.total}) results`);
-  setMaxPage(data.pagination.last_visible_page)
- };
-
+   const res = await fetch(baseURL);
+   const data = await res.json();
+   
+  //  console.log("ran fetchAnime, anime data:", data.data);
+   setAnimeList(data.data);
+   setCurrentURL(() => (dd) => `${baseURL}page=${dd}`);
+   setSearchResult(searchType + ` (${data.pagination.items.total}) results`);
+   setMaxPage(data.pagination.last_visible_page);
+  };
+  
+  const oprenPrev = () => {
+    // opens previously clicked anime in modal
+    if (clickedHistory.length > 0) setClickedAnimeInfo(clickedHistory)
+    else console.log("cant go back further");
+  };
+  const openClickedAnime = (mal_id) => {
+   fetchClickedAnime(mal_id);
+  };
  const fetchClickedAnime = async (mal_id) => {
-   // Fetching the anime user has clicked on
-   // fetch anime details, variety of info is from different API endpoints
+  // saving previous anime before fetching new one
+  setClickedHistory(clickedAnimeInfo)
+  // Fetching the anime user has clicked on, then display on modal
   try {
    const detailsURL = `https://api.jikan.moe/v4/anime/${mal_id}`;
-   const recommendationsURL = `https://api.jikan.moe/v4/anime/${mal_id}/recommendations`;
    const relationsURL = `https://api.jikan.moe/v4/anime/${mal_id}/relations`;
+   const recommendationsURL = `https://api.jikan.moe/v4/anime/${mal_id}/recommendations`;
 
    console.time("total time ran:");
    const results = await Promise.all([
@@ -96,27 +103,14 @@ const App = () => {
     fetch(relationsURL).then((res) => res.json()),
     fetch(recommendationsURL).then((res) => res.json()),
    ]);
-   const [details, related, recommendations] = results;
+   setClickedAnimeInfo(results);
    console.timeEnd("total time ran:");
-
-   console.log(
-    "anime:", details,
-    "related:", related,
-    "recommendations:", recommendations
-   );
-   setClickedAnime(details);
-   setclickedRelatedAnime(related);
-   setclickedRecommended(recommendations);
   } catch (err) {
    console.log(err);
   }
   setIsModalOpen(true);
  };
-
- // get fetchAnime() as the site render
- useEffect(() => {
-  fetchAnime("https://api.jikan.moe/v4/top/anime?", "Top anime series");
- }, []);
+ 
 
  return (
   <>
@@ -127,19 +121,21 @@ const App = () => {
      <AnimeModal
       setIsModalOpen={setIsModalOpen}
       openClickedAnime={openClickedAnime}
-      clickedAnime={clickedAnime}
-      clickedRelatedAnime={clickedRelatedAnime}
-      clickedRecommended={clickedRecommended}
+      clickedAnimeInfo={clickedAnimeInfo}
+      oprenPrev={oprenPrev}
      />
     )}
+
 
     <Home
      search={search}
      setSearch={setSearch}
      searchResult={searchResult}
+     //  array of the animes that was fetched to be displayed in result
      animeList={animeList}
+     // open anime user has clicked on, then display in result
      openClickedAnime={openClickedAnime}
-    //  manages pagination and fetches whenever page state changes
+     //  manages pagination and fetches whenever currentPage state changes
      currentPage={currentPage}
      changePage={changePage}
      fetchAnime={fetchAnime}

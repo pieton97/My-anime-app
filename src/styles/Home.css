@@ -54,14 +54,21 @@ input {
   flex-direction: row;
   justify-content: space-between;
 }
-#result-anchor .pagination-adjustors {
+.pagination-adjustors {
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
   align-items: center;
   gap: 6px;
 }
-#result-anchor button {
+.pagination-adjustors button {
   padding: 3px;
+}
+.flex-end {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin: 6px auto;
 }
 
 .card-main {

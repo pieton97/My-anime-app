@@ -32,8 +32,9 @@
 
 .titleCloseBtn {
   display: flex;
-  justify-content: flex-end;
-  padding-right: 5px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 7px;
 }
 .titleCloseBtn button {
   background-color: transparent;
@@ -44,6 +45,14 @@
 }
 .titleCloseBtn button:hover {
   color: red;
+}
+.titleCloseBtn .back-btn {
+  color: black;
+  font-size: 1rem;
+  text-decoration: underline;
+}
+.titleCloseBtn .back-btn:hover {
+  color: blue
 }
 
 /* body of modal below */
