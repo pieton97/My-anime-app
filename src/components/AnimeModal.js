@@ -3,7 +3,7 @@ import OpenImgModal from "./OpenImgModal";
 import "../styles/AnimeModal.css"
 
 const AnimeModal = ({ 
-  setOpenModal, 
+  setIsModalOpen, 
   clickedAnime, 
   clickedRelatedAnime, 
   openClickedAnime,
@@ -17,18 +17,17 @@ const AnimeModal = ({
 
   const openRelated = (mal_id, type) => {
     console.log(mal_id, type);
-    (type === "anime" ? setOpenModal(false) : console.log("not closing"));
+    (type === "anime" ? setIsModalOpen(false) : console.log("not closing"));
     (type === "anime" ? openClickedAnime(mal_id) : console.log("not anime"));
   };
 
   const openRecommended = (e) => {
     // open all anime to homepage
-
-   //only searched if clicked on img of anime
+   //only searched if clicked on anime img
    if (e.target.nodeName === "IMG") {
     const mal_id = parseInt(e.target.getAttribute("data-id"));
     console.log(mal_id);
-    setOpenModal(false);
+    setIsModalOpen(false);
     openClickedAnime(mal_id);
    }
   };
@@ -92,7 +91,7 @@ const AnimeModal = ({
   
 
  return (
-  <div className="modalBackground" onClick={() => setOpenModal(false)}>
+  <div className="modalBackground" onClick={() => setIsModalOpen(false)}>
    {imgModal && (
      <OpenImgModal 
       setImgModal={setImgModal} 
@@ -101,7 +100,7 @@ const AnimeModal = ({
    )}
    <div className="modalContainer" onClick={e => e.stopPropagation()}>
     <div className="titleCloseBtn">
-     <button onClick={() => {setOpenModal(false)}}>X</button>
+     <button onClick={() => {setIsModalOpen(false)}}>X</button>
     </div>
 
     <div className="body">
@@ -173,7 +172,7 @@ const AnimeModal = ({
       <div onClick={openRecommended} className="reccomended-wrapper">
         {recommendedAnimes}
       </div>
-
+      <p>This App's data is powered by <a href="https://jikan.moe/" rel="noreferrer noopener" target="_blank">Jikan API</a> with <a href="https://myanimelist.net/" rel="noreferrer noopener" target="_blank">MyAnimeList.net</a> as the original source.</p>
      </div>
 
     </div>

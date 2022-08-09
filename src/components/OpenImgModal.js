@@ -11,8 +11,7 @@ const OpenImgModal = ({ setImgModal, mal_id }) => {
   if (e.target.nodeName === "IMG") {
    setImgSrc(e.target.src);
    setImgIsOpen(true);
-   console.log(e.target.src, imgSrc);
-  } else console.log("not img");
+  };
  };
 
  // fetch anime images once when modal opens from jikan api

@@ -49,6 +49,21 @@ input {
   color: #0f0f0f;
 }
 
+#result-anchor {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#result-anchor .pagination-adjustors {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+#result-anchor button {
+  padding: 3px;
+}
+
 .card-main {
   display: flex;
   flex-wrap: wrap;

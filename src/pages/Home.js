@@ -5,12 +5,45 @@ import "../styles/Home.css";
 import homeImage from "../images/overlord-albedo.jpg";
 
 const Home = (props) => {
- const searchByButton = (e) => {
-  e.preventDefault();
-  if (e.target.nodeName === "BUTTON") {
-   props.buttonSearch(e);
+ const fetchAnimeType = (type, resultTitle, searchID) => {
+  const fetchAnime = props.fetchAnime;
+  switch (type) {
+   case "top anime":
+    fetchAnime("https://api.jikan.moe/v4/top/anime?", "Top anime series");
+    break;
+   case "this season":
+    fetchAnime("https://api.jikan.moe/v4/seasons/now?", "Anime this season");
+    break;
+   case "top movies":
+    fetchAnime("https://api.jikan.moe/v4/anime?type=movie&order_by=rank&sort=asc&min_score=5&sfw=true&", "Top anime movies");
+    break; 
+   case "search bar":
+    fetchAnime(`https://api.jikan.moe/v4/anime?q=${props.search}&order_by=rank&sort=asc&min_score=4&sfw=true&`, `Results for ${resultTitle}`);
+    break; 
+   case "genre or theme":
+    fetchAnime(`https://api.jikan.moe/v4/anime?genres=${searchID}&min_score=4&order_by=score&sort=desc&sfw=true&`, `Results for ${resultTitle}`);
+    break; 
+   default: 
+    console.log("nothing was fetched");
   }
  };
+
+ const handleSearch = (e) => {
+  e.preventDefault();
+  const searchBarValue = props.search;
+  fetchAnimeType("search bar", searchBarValue);
+ };
+
+ const searchByButton = (e) => {
+  e.preventDefault();
+  const buttonText = e.target.innerText;
+  const mal_id = parseInt(e.target.getAttribute("data-id"));
+  if (e.target.nodeName === "BUTTON") {
+  console.log(mal_id, buttonText);
+  fetchAnimeType("genre or theme", buttonText, mal_id);
+  }
+ };
+
  const openAnime = (mal_id) => {
   props.openClickedAnime(mal_id);
  };
@@ -19,6 +52,8 @@ const Home = (props) => {
   let searchBtn = document.getElementById("home-search-btn");
   setTimeout(() => searchBtn.click(), 600);
  };
+
+
  return (
   <main id="homepage">
    <div className="home">
@@ -27,7 +62,7 @@ const Home = (props) => {
       <img className="home-img" src={homeImage} alt="overlord-img"></img>
      </a>
     </div>
-    <form className="search-box" onSubmit={props.handleSearch}>
+    <form className="search-box" onSubmit={handleSearch}>
      <input
       type="search"
       placeholder="Search anime..."
@@ -43,20 +78,28 @@ const Home = (props) => {
 
    <h3>
     Hi there! welcome to MyAnimeApp. This app was made for you to browse and
-    find animes that you may have never seen before. Get started by
-    searching for an anime or click any anime below for recommendations.
+    find animes that you may have never seen before. Get started by searching
+    for an anime or click any anime below for recommendations.
    </h3>
    <div className="preset-search-btns">
-    <button>Top Anime This Season</button>
-    <button>Top Anime Series</button>
-    <button>Top Anime movies</button>
+    <button onClick={() => fetchAnimeType("top anime")}>Top Anime Series</button>
+    <button onClick={() => fetchAnimeType("this season")}>Anime This Season</button>
+    <button onClick={() => fetchAnimeType("top movies")}>Top Anime movies</button>
    </div>
    <SearchBtns searchByButton={searchByButton} />
 
    <div id="result-anchor">
     <h3>{props.searchResult}</h3>
+    <div className="pagination-adjustors">
+      <button onClick={() => props.changePage("first page")}>First</button>
+      <button onClick={() => props.changePage("decrement")}>Previous</button>
+      <p>page {props.currentPage}</p>
+      <button onClick={() => props.changePage("increment")}>Next</button>
+      <button onClick={() => props.changePage("last page")}>Last</button>
+    </div>
    </div>
    <hr />
+
    <div className="card-main">
     {props.animeList.map((anime) => (
      <AnimeCard
