@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/My-anime-app/static/css/main.34600b39.css",
-    "main.js": "/My-anime-app/static/js/main.089245aa.js",
+    "main.css": "/My-anime-app/static/css/main.86cdefe1.css",
+    "main.js": "/My-anime-app/static/js/main.c43c1aa5.js",
     "static/media/overlord-albedo.jpg": "/My-anime-app/static/media/overlord-albedo.79baf95779eed83387e1.jpg",
     "index.html": "/My-anime-app/index.html",
-    "main.34600b39.css.map": "/My-anime-app/static/css/main.34600b39.css.map",
-    "main.089245aa.js.map": "/My-anime-app/static/js/main.089245aa.js.map"
+    "main.86cdefe1.css.map": "/My-anime-app/static/css/main.86cdefe1.css.map",
+    "main.c43c1aa5.js.map": "/My-anime-app/static/js/main.c43c1aa5.js.map"
   },
   "entrypoints": [
-    "static/css/main.34600b39.css",
-    "static/js/main.089245aa.js"
+    "static/css/main.86cdefe1.css",
+    "static/js/main.c43c1aa5.js"
   ]
 }
