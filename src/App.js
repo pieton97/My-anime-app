@@ -22,7 +22,7 @@ const App = () => {
   JSON.parse(localStorage.getItem("userList")) ?? []
  );
 
- const changePage = (type) => {
+ const changePage = (type, custom) => {
   let newPage;
   switch (type) {
    case "increment":
@@ -40,6 +40,10 @@ const App = () => {
     break;
    case "last page":
     setCurrentPage(maxPage);
+    break;
+   case "custom":
+    if (custom <= maxPage && custom > 0) setCurrentPage(custom);
+    else console.log("nice try it wont work");
     break;
    default:
     console.log("pagination didnt work!!??");
@@ -86,10 +90,10 @@ const App = () => {
   const res = await fetch(baseURL);
   const data = await res.json();
 
-  //  console.log("ran fetchAnime, anime data:", data.data);
+  console.log("Anime data:", data);
   setAnimeList(data.data);
-  setCurrentURL(() => (dd) => `${baseURL}page=${dd}`);
-  setSearchResult(searchType + ` (${data.pagination.items.total}) results`);
+  setCurrentURL(() => (page) => `${baseURL}page=${page}`);
+  setSearchResult(searchType + ` (${data.pagination.items.total})`);
   setMaxPage(data.pagination.last_visible_page);
  };
 

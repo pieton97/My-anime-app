@@ -4,7 +4,8 @@
 }
 
 details {
-  margin: 8px 0;
+  margin: 10px 0;
+  padding: 0 7px;
 }
 
 details[open] summary {

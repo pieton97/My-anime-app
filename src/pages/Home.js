@@ -109,7 +109,7 @@ const Home = (props) => {
     />
    </div>
 
-   <h3 id="my-list-anchor">MyList: </h3>
+   <h3 id="my-list-anchor">MyList ({props.myList.length}) </h3>
    <hr />
    <div className="card-main">
     {props.myList.map((anime) => (

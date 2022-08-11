@@ -1,7 +1,7 @@
 .card-body {
-  flex: 1;
+  /* flex: 1;
   min-width: 200px;
-  max-width: 220px;
+  max-width: 250px; */
   margin: 10px;
   text-decoration: none;
   background-color: rgb(194, 194, 194);

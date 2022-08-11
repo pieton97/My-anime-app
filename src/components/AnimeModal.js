@@ -73,7 +73,7 @@ const AnimeModal = ({
 
   const recommendedArray = (
     // returns 10 random reccomened anime if theres more than 10 avaiable
-    reccomends.data.length > 10 
+    ("data" in reccomends && reccomends.data.length > 10)
     ? returnRandomArr(reccomends.data, 10) 
     : reccomends.data
   );

@@ -1,7 +1,8 @@
 main {
-  max-width: 1100px;
+  max-width: 1200px;
   min-height: 100vh;
   margin: 0 auto;
+  padding: 14px;
   padding-top: 60px;
 }
 
@@ -38,7 +39,7 @@ main {
   transform: scale(1.05); 
 }
 
-input {
+.search-box input {
   width: 100%;
   border: 2px solid #9252a5;
   padding: 5px;
@@ -48,6 +49,7 @@ input {
   outline: none;
   color: #0f0f0f;
 }
+
 
 #result-anchor {
   display: flex;
@@ -64,6 +66,13 @@ input {
 .pagination-adjustors button {
   padding: 3px;
 }
+.pagination-adjustors input {
+  border: none;
+  border-radius: 4px;
+  width: 45px;
+  height: 25px;
+  text-align: center;
+}
 .flex-end {
   display: flex;
   flex-direction: row;
@@ -72,9 +81,12 @@ input {
 }
 
 .card-main {
-  display: flex;
-  flex-wrap: wrap;
+  /* display: flex;
+  flex-wrap: wrap; */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   margin-top: 12px;
+  margin-bottom: 8px;
 }
 
 /* temporary styling below */

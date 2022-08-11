@@ -5,7 +5,7 @@ function SearchBtns(props) {
  return (
   <div className="search-buttons" onClick={props.searchByButton}>
    <details>
-    <summary>Search by genre:</summary>
+    <summary>Search by genre</summary>
     <button data-id="1">Action</button>
     <button data-id="2">Adventure</button>
     <button data-id="4">Comedy</button>
@@ -28,7 +28,7 @@ function SearchBtns(props) {
    </details>
 
    <details>
-    <summary>Search by theme:</summary>
+    <summary>Search by theme</summary>
     <button data-id="9">Ecchi</button>
     <button data-id="49">Erotica</button>
     <button data-id="81">CrossDressing</button>

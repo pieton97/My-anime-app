@@ -15,3 +15,16 @@ body{
   min-height: 100vh;
   background-color: rgb(214, 214, 214);
 }
+
+/* removes input number type arrows */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
