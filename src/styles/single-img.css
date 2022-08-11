@@ -1,7 +1,7 @@
 .single-img-wrapper {
   width: 100vw;
   height: 100vh;
-  background-color: rgba(109, 109, 109, 0.842);
+  background-color: rgba(109, 109, 109, 0.79);
   position: fixed;
   z-index: 300;
 }

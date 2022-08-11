@@ -2,3 +2,13 @@
   padding: 3px;
   margin: 5px;
 }
+
+details {
+  margin: 8px 0;
+}
+
+details[open] summary {
+  border-bottom: 1px solid #aaa;
+  padding-bottom: 7px;
+  margin-bottom: 5px;
+}

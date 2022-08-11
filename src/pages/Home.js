@@ -4,6 +4,7 @@ import SearchBtns from "../components/SearchBtns";
 import "../styles/Home.css";
 import homeImage from "../images/overlord-albedo.jpg";
 import PageChangeBtns from "../components/PageChangeBtns";
+import MyListCard from "../components/MyListCard";
 
 const Home = (props) => {
  const fetchAnimeType = (type, resultTitle, searchID) => {
@@ -25,7 +26,7 @@ const Home = (props) => {
     fetchAnime(`https://api.jikan.moe/v4/anime?genres=${searchID}&min_score=4&order_by=score&sort=desc&sfw=true&`, `Results for ${resultTitle}`);
     break; 
    default: 
-    console.log("nothing was fetched");
+    console.log("Error: nothing was fetched");
   }
  };
 
@@ -52,6 +53,7 @@ const Home = (props) => {
   setTimeout(() => searchBtn.click(), 600);
  };
 
+
  return (
   <main id="homepage">
    <div className="home">
@@ -74,11 +76,10 @@ const Home = (props) => {
     </form>
    </div>
 
-   <h3>
-    Hi there! welcome to MyAnimeApp. This app was made for you to browse and
-    find animes that you may have never seen before. Get started by searching
+   <p>
+    Hi there! welcome to MyAnimeApp. This app was made for you to easily browse and find good animes to watch. Get started by searching
     for an anime or click any anime below for recommendations.
-   </h3>
+   </p>
    <div className="preset-search-btns">
     <button onClick={() => fetchAnimeType("top anime")}>Top Anime Series</button>
     <button onClick={() => fetchAnimeType("this season")}>Anime This Season</button>
@@ -97,19 +98,28 @@ const Home = (props) => {
      <AnimeCard
       anime={anime}
       key={anime.mal_id}
-      animeKey={anime.mal_id}
       openAnime={openAnime}
      />
     ))}
    </div>
    <div className="flex-end">
-    <PageChangeBtns changePage={props.changePage} currentPage={props.currentPage} />
+    <PageChangeBtns 
+      changePage={props.changePage} 
+      currentPage={props.currentPage} 
+    />
    </div>
 
-   <h2>MyList:</h2>
+   <h3 id="my-list-anchor">MyList: </h3>
    <hr />
-   <p>future list section goes here... (save this list to local storage)</p>
-   <p>Add something to your list to save your favorites...</p>
+   <div className="card-main">
+    {props.myList.map((anime) => (
+      <MyListCard
+        anime={anime}
+        key={anime.mal_id}
+        openAnime={openAnime}
+      />
+    ))}
+   </div>
   </main>
  );
 };

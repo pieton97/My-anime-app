@@ -4,21 +4,42 @@ import "../styles/AnimeModal.css"
 
 const AnimeModal = ({ 
   setIsModalOpen, 
-  openClickedAnime,
   clickedAnimeInfo,
-  oprenPrev
+  openClickedAnime,
+  oprenPrev,
+  myList,
+  adjustMyList
 }) => {
   const [showMore, setShowMore] = useState(false);
   const [imgModal, setImgModal] = useState(false);
+  const [inMyList, setInMyList] = useState(false);
 
   // refactor for easy access to the anime array
   const [details, relations, reccomends] = clickedAnimeInfo;
   const anime = details.data;
-
-
-
-
-
+  
+  const addToMyList = () => {
+    // adds/remove anime from user myList
+    const mal_id = details.data.mal_id;
+    const title = details.data.title;
+    const img_url = details.data.images.webp.large_image_url;
+    if (inMyList === false) {
+      (adjustMyList([{
+        "mal_id" : mal_id, 
+        "title" : title, 
+        "img_url" : img_url
+      }], "add to myList"));
+      setInMyList(true)
+    } else {
+      adjustMyList(details.data.mal_id, "remove from myList")
+    };
+  };
+  useEffect(() => {
+    // changes add button styling when user adds/remove anime
+    const mal_id = details.data.mal_id;
+    const existInMyList = myList.findIndex(item => item.mal_id === mal_id);
+    existInMyList >= 0 ?  setInMyList(true) : setInMyList(false);
+  }, [myList]);
 
   const openRelated = (mal_id, type) => {
     console.log(mal_id, type);
@@ -27,11 +48,9 @@ const AnimeModal = ({
   };
 
   const openRecommended = (e) => {
-    // open all anime to homepage
    //only searched if clicked on anime img
    if (e.target.nodeName === "IMG") {
     const mal_id = parseInt(e.target.getAttribute("data-id"));
-    console.log(mal_id);
     setIsModalOpen(false);
     openClickedAnime(mal_id);
    }
@@ -60,7 +79,17 @@ const AnimeModal = ({
   );
 
   // left body refined JSX
-  let studio = (anime.studios.length > 0 ? <a href={anime.studios[0].url} rel="noreferrer noopener" target="_blank">{anime.studios[0].name}</a> : "");
+  const addListBtn = (inMyList === true
+    ? <button className="action-btn remove-btn" onClick={addToMyList}>Remove</button>
+    : <button className="action-btn" onClick={addToMyList}>Add to myList</button>
+  );
+  const watchBtn = (("streaming" in anime && anime.streaming.length > 0)
+    ? <a className="action-btn" href={anime.streaming[0].url} rel="noreferrer noopener" target="_blank">Watch anime ref</a>
+    : <a className="action-btn" href={`https://zoro.to/search?keyword=${anime.title}`} rel="noreferrer noopener" target="_blank">Watch now</a>
+  );
+  let studio = ((anime.studios.length > 0) && 
+    <a href={anime.studios[0].url} rel="noreferrer noopener" target="_blank">{anime.studios[0].name}</a>
+  );
   let genreString = anime.genres.map(genre => {
     return <a href={genre.url} rel="noreferrer" target="_blank" key={genre.name} >{genre.name}, </a>
   });
@@ -69,7 +98,15 @@ const AnimeModal = ({
   });
   
   // right body refined JSX
-  const synopsis = anime.synopsis.split(". ").join(". \n\n");
+  const synopsis = ((anime.synopsis && anime.synopsis.length > 250)
+    ? <span>
+      {showMore ? anime.synopsis : `${anime.synopsis.substring(0, 250)}...`}
+      <button className="show-synopsis" onClick={() => setShowMore(!showMore)}>
+        {showMore ? "Show less" : "Show more"}
+      </button>
+      </span> 
+    : "No synopsis data was found :("
+  );
   let relatedAnime = relations.data.map(anime => {
    const mal_id = anime.entry[0].mal_id;
    const type = anime.entry[0].type;
@@ -116,13 +153,13 @@ const AnimeModal = ({
         <img src={anime.images.jpg.large_image_url} alt="Anime pic" />
       </div>
       <div>
-        <a className="action-btn" href={anime.url} rel="noreferrer noopener" target="_blank">View source</a>
-        <a className="action-btn" href="www.google.com" rel="noreferrer noopener" target="_blank">Watch anime</a>
+        {addListBtn}
+        {watchBtn}
       </div>
       <div>
         <h3>Alternate Titles</h3>
         <hr></hr>
-        <p><strong>{anime.titles[1].type}</strong>: {anime.titles[1].title}</p>
+        <p><strong>Synonym</strong>: {anime.title_synonyms[0]}</p>
         <p><strong>English</strong>: {anime.title_english}</p>
         <p><strong>Japanese</strong>: {anime.title_japanese}</p>
       </div>
@@ -156,10 +193,7 @@ const AnimeModal = ({
       <h3>Synopsis</h3>
       <hr />
       <p>
-        {showMore ? synopsis : `${synopsis.substring(0, 250)}...`}
-        <button className="show-synopsis" onClick={() => setShowMore(!showMore)}>
-          {showMore ? "Show less" : "Show more"}
-        </button>
+        {synopsis}
       </p>
       {anime.trailer.embed_url && ( 
         <iframe 
@@ -178,7 +212,7 @@ const AnimeModal = ({
       <div onClick={openRecommended} className="reccomended-wrapper">
         {recommendedAnimes}
       </div>
-      <p>This App's data is powered by <a href="https://jikan.moe/" rel="noreferrer noopener" target="_blank">Jikan API</a> with <a href="https://myanimelist.net/" rel="noreferrer noopener" target="_blank">MyAnimeList.net</a> as the original source.</p>
+      <p>This App's data is powered by <a href="https://jikan.moe/" rel="noreferrer noopener" target="_blank">Jikan API</a> with <a href={anime.url} rel="noreferrer noopener" target="_blank">MyAnimeList.net</a> as the original source.</p>
      </div>
 
     </div>

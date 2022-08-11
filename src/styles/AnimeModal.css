@@ -94,14 +94,24 @@
   display: block;
   text-align: center;
   border-radius: 3px;
+  border: none;
   width: 100%;
   background-color: rgb(71, 71, 255);
   margin: 5px auto;
   padding: 6px;
+  cursor: pointer;
+  transition: all 0.5s;
 }
 .action-btn:hover {
   background-color: rgb(133, 133, 253);
 }
+.remove-btn {
+  background-color: #f77d19;
+}
+.remove-btn:hover {
+  background-color: #f3ad74;
+}
+/* #DF6300 */
 .info-container a {
   color: rgb(42, 42, 255);
   text-decoration: none;
