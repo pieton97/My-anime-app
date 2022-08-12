@@ -3,7 +3,29 @@ import "../styles/AnimeCard.css";
 const AnimeCard = (props) => {
  // Anime individual Cards
  const anime = props.anime;
- const imgSrc = anime.images.jpg.large_image_url;
+ const imgSrc = anime.images.webp.large_image_url;
+
+ const addToMyList = (e) => {
+  e.stopPropagation();
+  // adds/remove anime from user myList
+  const mal_id = anime.mal_id;
+  const title = anime.title;
+  const img_url = anime.images.webp.large_image_url;
+  if (exist < 0) {
+    (props.adjustMyList([{
+      "mal_id" : mal_id, 
+      "title" : title, 
+      "img_url" : img_url
+    }], "add to myList"));
+  } else {
+    props.adjustMyList(anime.mal_id, "remove from myList")
+  };
+ };
+
+ const exist = props.myList.findIndex(list => list.mal_id === anime.mal_id)
+ const adjustBtn = (exist < 0)
+  ? <button className="anime-card-btn" onClick={addToMyList}>+</button>
+  : <button className="anime-card-btn" onClick={addToMyList}>x</button>
 
  return (
   <>
@@ -20,9 +42,10 @@ const AnimeCard = (props) => {
     <p>popularity: {anime.popularity}</p>
     <p>members: {anime.members}</p>
    </div>
+   {adjustBtn}
   </div>
   </>
  );
-}
+} 
 
 export default AnimeCard;

@@ -34,6 +34,7 @@ const AnimeModal = ({
       adjustMyList(details.data.mal_id, "remove from myList")
     };
   };
+  
   useEffect(() => {
     // changes add button styling when user adds/remove anime
     const mal_id = details.data.mal_id;

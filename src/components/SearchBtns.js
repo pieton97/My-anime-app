@@ -1,5 +1,4 @@
 import React from "react";
-import "../styles/SearchBtns.css";
 
 function SearchBtns(props) {
  return (

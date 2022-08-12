@@ -80,7 +80,7 @@ const Home = (props) => {
     Hi there! welcome to MyAnimeApp. This app was made for you to easily browse and find good animes to watch. Get started by searching
     for an anime or click any anime below for recommendations.
    </p>
-   <div className="preset-search-btns">
+   <div>
     <button onClick={() => fetchAnimeType("top anime")}>Top Anime Series</button>
     <button onClick={() => fetchAnimeType("this season")}>Anime This Season</button>
     <button onClick={() => fetchAnimeType("top movies")}>Top Anime movies</button>
@@ -89,7 +89,10 @@ const Home = (props) => {
 
    <div id="result-anchor">
     <h3>{props.searchResult}</h3>
-    <PageChangeBtns changePage={props.changePage} currentPage={props.currentPage} />
+    <PageChangeBtns 
+      changePage={props.changePage} 
+      currentPage={props.currentPage} 
+    />
    </div>
    <hr />
 
@@ -99,6 +102,8 @@ const Home = (props) => {
       anime={anime}
       key={anime.mal_id}
       openAnime={openAnime}
+      myList={props.myList}
+      adjustMyList={props.adjustMyList}
      />
     ))}
    </div>
@@ -117,6 +122,7 @@ const Home = (props) => {
         anime={anime}
         key={anime.mal_id}
         openAnime={openAnime}
+        adjustMyList={props.adjustMyList}
       />
     ))}
    </div>

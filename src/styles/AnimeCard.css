@@ -9,6 +9,8 @@
   border-radius: 3px;
   overflow: hidden;
   cursor: pointer;
+  position: relative;
+
 }
 
 .card-fig {
@@ -29,7 +31,7 @@
 }
 div.anime-cont:hover{
   background-color: rgb(44, 0, 114);
-  color: white;
+  color: whitesmoke;
   box-shadow: 0px 8px 15px rgb(22, 0, 58);
 }
 .card-body:hover .card-image {
@@ -45,4 +47,29 @@ div.anime-cont:hover{
   margin-bottom: 5%;
   text-align: center;
   font-size: small;
+}
+
+.anime-card-btn {
+  padding: 5px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 2px;
+  font-size: 1rem;
+  background-color: rgb(231, 229, 229);
+  color: #404041;
+  cursor: pointer;
+  transition: 0.3s;
+  opacity: 0;
+}
+.anime-card-btn:hover {
+  background-color: #68b5d3;
+  color: whitesmoke;
+}
+
+.card-body:hover .anime-card-btn {
+  opacity: 1;
 }

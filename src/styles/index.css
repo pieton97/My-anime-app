@@ -16,15 +16,21 @@ body{
   background-color: rgb(214, 214, 214);
 }
 
-/* removes input number type arrows */
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+:root {
+  --dark-accent: #404041;
+  --dark-accent-hover: #606063;
+  --main-orange: #eb7c21;
+  --main-orange-hover: #eb7c21ad;
+  --main-blue: #049696;
+  --main-blue-hover: #049696ad;
+  --home-btns: #049696;
+  --home-btns-hover: #049696ad;
 }
+/* rgb(71, 71, 255)
+#f77d19 
+very dark : #0f0f0f
 
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
+
+
+*/
+

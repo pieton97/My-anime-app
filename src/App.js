@@ -159,6 +159,7 @@ const App = () => {
      fetchAnime={fetchAnime}
      // manages user myList and local storage
      myList={myList}
+     adjustMyList={adjustMyList}
     />
 
     <Footer />

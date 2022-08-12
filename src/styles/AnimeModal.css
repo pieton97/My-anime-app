@@ -96,7 +96,7 @@
   border-radius: 3px;
   border: none;
   width: 100%;
-  background-color: rgb(71, 71, 255);
+  background-color: var(--main-blue);
   margin: 5px auto;
   padding: 6px;
   cursor: pointer;
@@ -106,7 +106,7 @@
   background-color: rgb(133, 133, 253);
 }
 .remove-btn {
-  background-color: #f77d19;
+  background-color: var(--main-orange);
 }
 .remove-btn:hover {
   background-color: #f3ad74;
