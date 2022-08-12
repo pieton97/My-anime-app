@@ -109,7 +109,19 @@ const Home = (props) => {
     />
    </div>
 
-   <h3 id="my-list-anchor">MyList ({props.myList.length}) </h3>
+   <details>
+    <summary id="my-list-anchor">MyList ({props.myList.length})</summary>
+    <div className="card-main">
+    {props.myList.map((anime) => (
+      <MyListCard
+        anime={anime}
+        key={anime.mal_id}
+        openAnime={openAnime}
+      />
+    ))}
+   </div>
+   </details>
+   {/* <h3 id="my-list-anchor">MyList ({props.myList.length})</h3>
    <hr />
    <div className="card-main">
     {props.myList.map((anime) => (
@@ -119,7 +131,7 @@ const Home = (props) => {
         openAnime={openAnime}
       />
     ))}
-   </div>
+   </div> */}
   </main>
  );
 };

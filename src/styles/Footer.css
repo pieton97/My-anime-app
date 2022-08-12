@@ -3,13 +3,17 @@ footer {
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: rgb(35, 0, 163);
-  color: whitesmoke;
   text-align: center;
   padding: 10px;
+  margin: 0 auto;
+  border-top: 3px solid rgb(61, 61, 61);
+  max-width: 1250px;
+  height: 85px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
 }
 
 footer a {
   color: inherit;
-  
 }
