@@ -36,12 +36,13 @@
 .img-box-wrapper {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
   margin: 10px;
   overflow-y: auto;
 }
 .img-box {
-  max-width: 49%;
+  max-width: 48%;
   height: 100%;
   overflow: hidden;
   cursor: pointer;
@@ -55,4 +56,32 @@
 }
 .img-box img:hover {
   transform: scale(1.02);
+}
+
+.img-modal p {
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+  margin: 5px;
+}
+
+@media only screen and (max-width: 993px) {
+  .img-modal {
+    max-height: 75%;
+    width: 90%;
+    padding: 25px;
+  }
+  .img-box-wrapper {
+    gap: 12px;
+    margin: 0px;
+  }
+  .img-box {
+    height: 100%;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .img-modal p {
+    font-size: 15px;
+    margin: 3px;
+  }  
 }

@@ -7,8 +7,6 @@ main {
   padding-top: 80px;
 }
 .card-main {
-  /* display: flex;
-  flex-wrap: wrap; */
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   margin-top: 12px;
@@ -17,7 +15,9 @@ main {
 .home {
   margin: 30px;
 }
-
+main hr {
+  margin: 4px;
+}
 
 .home-img-container {
   display: block;
@@ -38,6 +38,10 @@ main {
 }
 .home .home-img:hover {
   transform: scale(1.05); 
+}
+
+.welcome-text {
+  margin-bottom: 10px;
 }
 
 form {
@@ -68,7 +72,6 @@ form {
   background-color: var(--main-orange-hover);
 }
 
-
 main button {
   border: none;
   border-radius: 4px;
@@ -85,8 +88,11 @@ main button:hover {
 }
 /* within SearchBtns.js */
 details {
-  margin: 10px 0;
+  margin: 15px 0;
   padding: 0 7px;
+}
+details summary {
+  cursor: pointer;
 }
 details[open] summary {
   border-bottom: 1px solid #aaa;
@@ -98,6 +104,7 @@ details[open] summary {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 /* within PageChangeBtn.js */
 .pagination-adjustors {
@@ -139,3 +146,36 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+/* desktop resizable */
+@media only screen and (max-width: 993px) {
+  .card-main {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+/* ipads ish screens */
+@media only screen and (max-width: 768px) {
+  .card-main {
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 12px;
+    margin-bottom: 8px;
+  }
+}
+@media only screen and (max-width: 650px) {
+  #result-anchor {
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-end;
+  }
+}
+
+/* mobile */
+@media only screen and (max-width: 480px) {
+  .card-main {
+    grid-template-columns: 1fr 1fr;
+    margin-top: 12px;
+    margin-bottom: 8px;
+  }
+}
+

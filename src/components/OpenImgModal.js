@@ -13,7 +13,7 @@ const OpenImgModal = ({ setImgModal, mal_id }) => {
    setImgIsOpen(true);
   };
  };
-
+ 
  // fetch anime images once when modal opens from jikan api
  useEffect(() => {
   const fetchImages = async () => {
@@ -21,11 +21,9 @@ const OpenImgModal = ({ setImgModal, mal_id }) => {
    const res = await fetch(baseURL);
    const data = await res.json();
 
-   console.log(data.data);
    setModalImages(data.data);
   };
   fetchImages();
-  console.log("loaded images");
  }, [mal_id]);
 
  return (
@@ -46,7 +44,7 @@ const OpenImgModal = ({ setImgModal, mal_id }) => {
        );
       })}
      </div>
-     <button onClick={() => setImgModal(false)}>Close modal</button>
+     <p onClick={() => setImgModal(false)}>Close modal</p>
     </div>
    </div>
   </div>

@@ -35,12 +35,11 @@ const AnimeCard = (props) => {
    </figure>
    <div className="anime-details">
     <h3 className="card-title">{anime.title}</h3>
-    <p>type: {anime.type}</p>
     <p>score: {anime.score}</p>
+    <p>type: {anime.type}</p>
+    <p>episodes: {anime.episodes}</p>
     <p>duration: {anime.duration}</p>
-    <p>rank: {anime.rank}</p>
     <p>popularity: {anime.popularity}</p>
-    <p>members: {anime.members}</p>
    </div>
    {adjustBtn}
   </div>

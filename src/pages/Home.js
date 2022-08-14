@@ -76,7 +76,7 @@ const Home = (props) => {
     </form>
    </div>
 
-   <p>
+   <p className="welcome-text">
     Hi there! welcome to MyAnimeApp. This app was made for you to easily browse and find good animes to watch. Get started by searching
     for an anime or click any anime below for recommendations.
    </p>
@@ -127,17 +127,6 @@ const Home = (props) => {
     ))}
    </div>
    </details>
-   {/* <h3 id="my-list-anchor">MyList ({props.myList.length})</h3>
-   <hr />
-   <div className="card-main">
-    {props.myList.map((anime) => (
-      <MyListCard
-        anime={anime}
-        key={anime.mal_id}
-        openAnime={openAnime}
-      />
-    ))}
-   </div> */}
   </main>
  );
 };

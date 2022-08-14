@@ -15,7 +15,6 @@
 
 .card-fig {
   display: block;
-  margin-bottom: 16px;
   overflow: hidden;
 }
 
@@ -39,18 +38,19 @@ div.anime-cont:hover{
 }
 
 .anime-details {
-  padding: 8px;
+  padding: 12px 10px;
   font-size: 12px;
 }
-
 .card-title {
-  margin-bottom: 5%;
+  margin-bottom: 8px;
+  padding: 5px;
   text-align: center;
   font-size: small;
 }
 
 .anime-card-btn {
   padding: 5px;
+  padding-bottom: 27px;
   position: absolute;
   top: 5px;
   right: 5px;
@@ -72,4 +72,10 @@ div.anime-cont:hover{
 
 .card-body:hover .anime-card-btn {
   opacity: 1;
+}
+
+@media only screen and (max-width: 993px) {
+  .anime-card-btn {
+    opacity: 1;
+  }
 }

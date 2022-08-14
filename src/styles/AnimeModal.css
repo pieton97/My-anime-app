@@ -40,7 +40,7 @@
   background-color: transparent;
   border: none;
   font-size: 25px;
-  color: rgb(42, 42, 255);
+  color: rgb(48, 48, 245);
   cursor: pointer;
 }
 .titleCloseBtn button:hover {
@@ -52,12 +52,13 @@
   text-decoration: underline;
 }
 .titleCloseBtn .back-btn:hover {
-  color: blue
+  color: blue;
 }
 
 /* body of modal below */
 .modalContainer .body {
   display: flex;
+  flex-direction: row;
   gap: 8px;
   font-size: 12px;
 }
@@ -69,6 +70,9 @@
   flex-direction: column;
   gap: 15px;
   background-color: rgba(212, 212, 212, 0.568);
+}
+.left-body hr {
+  margin: 3px 0;
 }
 .modal-img-container {
   display: block;
@@ -103,7 +107,7 @@
   transition: all 0.5s;
 }
 .action-btn:hover {
-  background-color: rgb(133, 133, 253);
+  background-color: var(--main-blue-hover);
 }
 .remove-btn {
   background-color: var(--main-orange);
@@ -111,7 +115,9 @@
 .remove-btn:hover {
   background-color: #f3ad74;
 }
-/* #DF6300 */
+.info-container p {
+  margin: 5px 3px;
+}
 .info-container a {
   color: rgb(42, 42, 255);
   text-decoration: none;
@@ -120,6 +126,7 @@
   text-decoration: underline;
 }
 
+/* right body divider */
 .right-body {
   width: 100%;
   max-height: 100%;
@@ -131,11 +138,23 @@
   background-color: rgba(173, 216, 230, 0.527);
   overflow-x: hidden;
 }
+.anime-rank-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin: 8px 0;
+}
 .right-body iframe {
   width: 90%;
   height: 550px;
   margin: 2px auto;
   border: none;
+}
+.right-body h3 {
+  margin-top: 7px;
+}
+.right-body p {
+  margin-left: 10px;
 }
 
 .show-synopsis {
@@ -170,18 +189,19 @@
   overflow: hidden;
   position: relative;
   cursor: pointer;
+  border-radius: 3px;
 }
-/* .img-wrapper .botleft {
+.img-wrapper .botleft {
   position: absolute;
   display: block;
   width: 100%;
   bottom: 0;
-  color: white;
-  background-color: black;
+  color: whitesmoke;
+  background: linear-gradient(0deg, rgb(29, 29, 29), rgba(32, 32, 32, 0.39));
   padding: 2px;
-  font-size: 12px;
   word-wrap: break-word;
-} */
+  cursor: default;
+}
 .img-wrapper img {
   height: 100%;
   object-fit: cover;
@@ -191,4 +211,53 @@
 .img-wrapper img:hover {
   transform: scale(1.05); 
   opacity: 0.8;
+}
+
+@media only screen and (max-width: 993px) {
+  .titleCloseBtn button {
+    font-size: 19px;
+  }
+  .titleCloseBtn .back-btn {
+    font-size: 14px;
+  }
+  .modalContainer .body {
+    gap: 8px;
+    font-size: 11px;
+  }
+  .modalContainer {
+    max-height: 80%;
+    width: 95%;
+    padding: 15px;
+  }
+  .left-body {
+    width: 260px;
+    gap: 12px;
+  }
+  .modal-img-container {
+    height: 240px;
+  }
+  .action-btn {
+    font-size: 11px;
+  }
+  .right-body iframe {
+    width: 95%;
+    height: 380px;
+  }
+}
+
+@media only screen and (max-width: 768px){
+  .modalContainer .body {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    font-size: 12px;
+  }
+}
+@media only screen and (max-width: 480px){
+  .modalContainer .body {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    font-size: 12px;
+  }
 }

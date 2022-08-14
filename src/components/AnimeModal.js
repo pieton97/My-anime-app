@@ -56,7 +56,11 @@ const AnimeModal = ({
     openClickedAnime(mal_id);
    }
   };
-  
+
+  const numberWithCommas = (x) => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   const returnRandomArr = (arr, n) => {
     // takes any array and returns array of random unique (n)results
     var result = new Array(n),
@@ -85,8 +89,8 @@ const AnimeModal = ({
     : <button className="action-btn" onClick={addToMyList}>Add to myList</button>
   );
   const watchBtn = (("streaming" in anime && anime.streaming.length > 0)
-    ? <a className="action-btn" href={anime.streaming[0].url} rel="noreferrer noopener" target="_blank">Watch anime ref</a>
-    : <a className="action-btn" href={`https://zoro.to/search?keyword=${anime.title}`} rel="noreferrer noopener" target="_blank">Watch now</a>
+    ? <a className="action-btn" href={anime.streaming[0].url} rel="noreferrer noopener" target="_blank">Watch anime</a>
+    : <a className="action-btn" href={`https://zoro.to/search?keyword=${anime.title}`} rel="noreferrer noopener" target="_blank">Watch anime</a>
   );
   let studio = ((anime.studios.length > 0) && 
     <a href={anime.studios[0].url} rel="noreferrer noopener" target="_blank">{anime.studios[0].name}</a>
@@ -99,13 +103,14 @@ const AnimeModal = ({
   });
   
   // right body refined JSX
+  const membersValue = numberWithCommas(anime.members);
   const synopsis = ((anime.synopsis && anime.synopsis.length > 250)
-    ? <span>
-      {showMore ? anime.synopsis : `${anime.synopsis.substring(0, 250)}...`}
+    ? <>
+      {showMore ? anime.synopsis : `${anime.synopsis.substring(0, 350)}...`}
       <button className="show-synopsis" onClick={() => setShowMore(!showMore)}>
         {showMore ? "Show less" : "Show more"}
       </button>
-      </span> 
+      </> 
     : "No synopsis data was found :("
   );
   let relatedAnime = relations.data.map(anime => {
@@ -121,13 +126,12 @@ const AnimeModal = ({
   });
   let recommendedAnimes = recommendedArray.map(anime => {
     const image = anime.entry.images.webp.image_url;
-    const key = anime.entry.mal_id;
     const mal_id = anime.entry.mal_id;
     const animeName = anime.entry.title;
     return (
-      <div className="img-wrapper" key={key}>
+      <div className="img-wrapper" key={mal_id}>
         <img src={image} alt={animeName} data-id={mal_id}></img>
-        {/* <div><div className="botleft" data-id={mal_id}>{animeName}</div></div> */}
+        <div className="botleft" data-id={mal_id}>{animeName}</div>
       </div>
     );
   });
@@ -157,7 +161,7 @@ const AnimeModal = ({
         {addListBtn}
         {watchBtn}
       </div>
-      <div>
+      <div className="info-container">
         <h3>Alternate Titles</h3>
         <hr></hr>
         <p><strong>Synonym</strong>: {anime.title_synonyms[0]}</p>
@@ -167,29 +171,29 @@ const AnimeModal = ({
       <div className="info-container">
         <h3>Information</h3>
         <hr></hr>
-        <p>Type: {anime.type}</p>
-        <p>Status: {anime.status}</p>
-        <p>Aired: {anime.aired.string}</p>
+        <p><strong>Type:</strong> {anime.type}</p>
+        <p><strong>Status:</strong> {anime.status}</p>
+        <p><strong>Aired:</strong> {anime.aired.string}</p>
         <p>
-          Year: {anime.year ? (anime.year + " " + anime.season) : "no data found"}
+          <strong>Year:</strong> {anime.year ? (anime.year + " " + anime.season) : "no data found"}
         </p>
-        <p>Episodes: {anime.episodes ? anime.episodes : "no data found"}</p>
-        <p>Duration: {anime.duration}</p>
-        {studio && (<p>Studios: {studio}</p>)}
-        <p>Source: {anime.source}</p>
-        <p>Genre: {genreString}</p>
-        {themeString && (<p>Theme: {themeString}</p>)}
-        <p>Rating: {anime.rating}</p>
+        <p><strong>Episodes:</strong> {anime.episodes ? anime.episodes : "no data found"}</p>
+        <p><strong>Duration:</strong> {anime.duration}</p>
+        {studio && (<p><strong>Studios:</strong> {studio}</p>)}
+        <p><strong>Source:</strong> {anime.source}</p>
+        <p><strong>Genre:</strong> {genreString}</p>
+        {themeString && (<p><strong>Theme:</strong> {themeString}</p>)}
+        <p><strong>Rating:</strong> {anime.rating}</p>
       </div>
-
      </div>
 
      <div className="right-body">
       <h2>{anime.title}</h2>
-      <div>
-        <p>Score: {anime.score}</p>
-        <p>Rank: {anime.rank}</p>
-        <p>Members: {anime.members}</p>
+      <div className="anime-rank-stats">
+        <p><strong>Score:</strong> {anime.score}</p>
+        <p><strong>Rank:</strong> {anime.rank}</p>
+        <p><strong>Members:</strong> {membersValue}</p>
+        <p><strong>Popularity:</strong> {anime.popularity}</p>
       </div>
       <h3>Synopsis</h3>
       <hr />
