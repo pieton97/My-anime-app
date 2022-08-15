@@ -24,7 +24,7 @@ const AnimeCard = (props) => {
 
  const exist = props.myList.findIndex(list => list.mal_id === anime.mal_id)
  const adjustBtn = (exist < 0)
-  ? <button className="anime-card-btn" onClick={addToMyList}>+</button>
+  ? <button className="anime-card-btn orange-hover" onClick={addToMyList}>+</button>
   : <button className="anime-card-btn" onClick={addToMyList}>x</button>
 
  return (
@@ -39,7 +39,6 @@ const AnimeCard = (props) => {
     <p>type: {anime.type}</p>
     <p>episodes: {anime.episodes}</p>
     <p>duration: {anime.duration}</p>
-    <p>popularity: {anime.popularity}</p>
    </div>
    {adjustBtn}
   </div>

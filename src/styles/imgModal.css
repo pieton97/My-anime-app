@@ -85,3 +85,16 @@
     margin: 3px;
   }  
 }
+
+@media only screen and (max-width: 480px){
+  .img-modal {
+    max-height: 70%;
+    padding: 10px;
+  }
+  .img-box-wrapper {
+    gap: 7px;
+  }
+  .img-modal p {
+    font-size: 12px;
+  } 
+}

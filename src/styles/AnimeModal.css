@@ -34,7 +34,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 4px 7px;
+  padding: 6px 10px;
 }
 .titleCloseBtn button {
   background-color: transparent;
@@ -79,6 +79,7 @@
   margin: 0 auto;
   overflow: hidden;
   height: 300px;
+  border-radius: 3px;
   cursor: pointer;
 }
 .modal-img-container img {
@@ -140,8 +141,8 @@
 }
 .anime-rank-stats {
   display: flex;
-  flex-direction: column;
-  gap: 3px;
+  flex-direction: row;
+  gap: 100px;
   margin: 8px 0;
 }
 .right-body iframe {
@@ -246,18 +247,109 @@
 }
 
 @media only screen and (max-width: 768px){
+  .titleCloseBtn button {
+    font-size: 17px;
+  }
+  .titleCloseBtn .back-btn {
+    font-size: 15px;
+  }
   .modalContainer .body {
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-    font-size: 12px;
+    gap: 0px;
+    font-size: 10px;
+  }  
+  .modalContainer {
+    padding: 12px;
+  }
+  .body h3 {
+    margin-top: 0px;
+  }
+  .left-body {
+    width: 240px;
+    gap: 12px;
+  }
+  .modal-img-container {
+    height: 220px;
+  }
+  .action-btn {
+    font-size: 10px;
+  }
+  .anime-rank-stats {
+    gap: 40px;
+  }
+  .right-body iframe {
+    height: 350px;
+  }
+  .info-container p {
+    margin: 5px 2px;
+  }
+  .right-body h2 {
+    font-size: 14px;
+  }
+  .right-body p {
+    margin-left: 7px;
+  }
+  .reccomended-wrapper {
+    height: 215px;
+    width: 98%; 
+  }
+  .img-wrapper {
+    display: inline-block;
+    height: 180px;
+    margin: 5px;
   }
 }
+
 @media only screen and (max-width: 480px){
+  .titleCloseBtn button {
+    font-size: 17px;
+  }
+  .titleCloseBtn .back-btn {
+    font-size: 14px;
+  }
   .modalContainer .body {
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 11px;
+  }  
+  .modalContainer {
+    padding: 15px;
+  }
+  .left-body {
+    width: 100%;
+    gap: 5px;
+  }
+  .modal-img-container {
+    margin: 4px auto;
+    height: 350px;
+  }
+  .action-btn {
     font-size: 12px;
+  }
+  .anime-rank-stats {
+    gap: 40px;
+  }
+  .right-body iframe {
+    width: 100%;
+    height: 300px;
+  }
+  .info-container p {
+    margin: 5px 7px;
+  }
+  .right-body h2 {
+    font-size: 16px;
+  }
+  .related-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .reccomended-wrapper {
+    height: 195px;
+    width: 98%; 
+  }
+  .img-wrapper {
+    display: inline-block;
+    height: 160px;
+    margin: 5px;
   }
 }

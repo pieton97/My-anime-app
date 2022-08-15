@@ -15,7 +15,9 @@ function MyListCard(props) {
     <figure className="card-fig">
       <img className="card-image" src={anime.img_url} alt="Anime pic" />
     </figure>
-    <h3 className="card-title">{anime.title}</h3>
+    <div className="anime-details">
+      <h3 className="card-title">{anime.title}</h3>
+    </div>
     <button className="anime-card-btn" onClick={removeAnime}>x</button>
    </div>
   </>

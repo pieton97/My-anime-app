@@ -1,7 +1,4 @@
 .card-body {
-  /* flex: 1;
-  min-width: 200px;
-  max-width: 250px; */
   margin: 10px;
   text-decoration: none;
   background-color: rgb(194, 194, 194);
@@ -10,7 +7,6 @@
   overflow: hidden;
   cursor: pointer;
   position: relative;
-
 }
 
 .card-fig {
@@ -38,7 +34,8 @@ div.anime-cont:hover{
 }
 
 .anime-details {
-  padding: 12px 10px;
+  padding: 14px 15px;
+  padding-top: 8px;
   font-size: 12px;
 }
 .card-title {
@@ -66,8 +63,11 @@ div.anime-cont:hover{
   opacity: 0;
 }
 .anime-card-btn:hover {
-  background-color: #68b5d3;
+  background-color: var(--main-orange);
   color: whitesmoke;
+}
+.orange-hover:hover {
+  background-color: var(--main-blue);
 }
 
 .card-body:hover .anime-card-btn {
@@ -77,5 +77,49 @@ div.anime-cont:hover{
 @media only screen and (max-width: 993px) {
   .anime-card-btn {
     opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .card-body {
+    margin: 7px 5px;
+  }
+  .card-fig {
+    height: 240px;
+  }
+  .card-image {
+    height: 100%;
+  }
+  div.anime-cont:hover{
+    background-color: rgb(194, 194, 194);
+    color: inherit;
+    box-shadow: none;
+  }
+  .anime-details {
+    padding: 10px 8px;
+    padding-top: 8px;
+    font-size: 10px;
+  }
+  .anime-details p {
+    margin-bottom: 2px;
+  }
+  .card-title {
+    margin-bottom: 3px;
+    padding: 3px;
+    font-size: 12px;
+  }
+  .anime-card-btn {
+    padding: 0px;
+    padding-bottom: 2px;
+    width: 25px;
+    height: 25px;
+    font-size: 13px;
+  }
+  .anime-card-btn {
+    background-color: var(--main-orange);
+    color: whitesmoke;
+  }
+  .orange-hover {
+    background-color: var(--main-blue);
   }
 }

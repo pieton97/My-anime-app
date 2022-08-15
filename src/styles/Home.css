@@ -77,7 +77,6 @@ main button {
   border-radius: 4px;
   color: whitesmoke;
   background-color: var(--home-btns);
-  padding: 5px;
   cursor: pointer;
   transition: 0.3s;
   padding: 3px 9px;
@@ -141,7 +140,6 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
@@ -172,10 +170,48 @@ input[type=number] {
 
 /* mobile */
 @media only screen and (max-width: 480px) {
+  main {
+    font-size: 12px;
+  }
+  main button {
+    padding: 2px 5px;
+    margin: 3px;
+    font-size: 12px;
+  }
+  .home {
+    margin: 20px;
+  }
+  #home-search-btn {
+    padding: 0 10px;
+  }
+  details {
+    margin: 10px 0;
+    padding: 0 0px;
+  }
   .card-main {
     grid-template-columns: 1fr 1fr;
     margin-top: 12px;
     margin-bottom: 8px;
+  }
+  .search-box input {
+    padding: 10px;
+    height: 30px;
+    font-size: 13px;
+  }
+  .default-search-btns button {
+    width: 30%;
+  }
+  .pagination-adjustors {
+    gap: 2px;
+  }
+  .pagination-adjustors button {
+    padding: 2px 8px;
+  }
+  .pagination-adjustors input {
+    width: 42px;
+    height: 23px;
+    text-align: center;
+    font-size: 11px;
   }
 }
 

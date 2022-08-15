@@ -78,9 +78,9 @@ const Home = (props) => {
 
    <p className="welcome-text">
     Hi there! welcome to MyAnimeApp. This app was made for you to easily browse and find good animes to watch. Get started by searching
-    for an anime or click any anime below for recommendations.
+    for an anime or click any below for recommendations.
    </p>
-   <div>
+   <div className="default-search-btns">
     <button onClick={() => fetchAnimeType("top anime")}>Top Anime Series</button>
     <button onClick={() => fetchAnimeType("this season")}>Anime This Season</button>
     <button onClick={() => fetchAnimeType("top movies")}>Top Anime movies</button>

@@ -190,10 +190,14 @@ const AnimeModal = ({
      <div className="right-body">
       <h2>{anime.title}</h2>
       <div className="anime-rank-stats">
-        <p><strong>Score:</strong> {anime.score}</p>
-        <p><strong>Rank:</strong> {anime.rank}</p>
-        <p><strong>Members:</strong> {membersValue}</p>
-        <p><strong>Popularity:</strong> {anime.popularity}</p>
+        <div>
+          <p><strong>Score:</strong> {anime.score}</p>
+          <p><strong>Rank:</strong> {anime.rank}</p>
+        </div>
+        <div>
+          <p><strong>Members:</strong> {membersValue}</p>
+          <p><strong>Popularity:</strong> {anime.popularity}</p>
+        </div>
       </div>
       <h3>Synopsis</h3>
       <hr />
@@ -211,7 +215,7 @@ const AnimeModal = ({
       <div></div>
       <h3>Related Anime</h3>
       <hr />
-      <div>{relatedAnime}</div>
+      <div className="related-wrapper">{relatedAnime}</div>
       <h3>Recommendations: ({reccomends.data.length}) total</h3>
       <hr />
       <div onClick={openRecommended} className="reccomended-wrapper">
@@ -219,7 +223,6 @@ const AnimeModal = ({
       </div>
       <p>This App's data is powered by <a href="https://jikan.moe/" rel="noreferrer noopener" target="_blank">Jikan API</a> with <a href={anime.url} rel="noreferrer noopener" target="_blank">MyAnimeList.net</a> as the original source.</p>
      </div>
-
     </div>
    </div>
   </div>
