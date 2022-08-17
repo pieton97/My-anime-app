@@ -17,7 +17,7 @@ const Home = (props) => {
     fetchAnime("https://api.jikan.moe/v4/seasons/now?", "Anime this season");
     break;
    case "top movies":
-    fetchAnime("https://api.jikan.moe/v4/anime?type=movie&order_by=rank&sort=asc&min_score=5.5&sfw=true&", "Top anime movies");
+    fetchAnime("https://api.jikan.moe/v4/anime?type=movie&order_by=score&sort=desc&min_score=5.5&sfw=true&", "Top anime movies");
     break; 
    case "search bar":
     fetchAnime(`https://api.jikan.moe/v4/anime?q=${props.search}&order_by=rank&sort=asc&min_score=1&sfw=true&`, `Results for ${resultTitle}`);
