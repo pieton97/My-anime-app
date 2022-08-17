@@ -3,7 +3,7 @@ import AnimeCard from "../components/AnimeCard";
 import SearchBtns from "../components/SearchBtns";
 import PageChangeBtns from "../components/PageChangeBtns";
 import MyListCard from "../components/MyListCard";
-import homeImage from "../images/emilia.png";
+import homeImage from "../images/emilia2.png";
 import "../styles/Home.css";
 
 const Home = (props) => {

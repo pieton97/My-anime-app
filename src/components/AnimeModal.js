@@ -231,7 +231,7 @@ const AnimeModal = ({
       <div onClick={openRecommended} className="reccomended-wrapper">
         {recommendedAnimes}
       </div>
-      <p>This App's data is powered by <a href="https://jikan.moe/" rel="noreferrer noopener" target="_blank">Jikan API</a> with <a href={anime.url} rel="noreferrer noopener" target="_blank">MyAnimeList.net</a> as the original source.</p>
+      <p>This App's data is powered by <a href="https://jikan.moe/" rel="noreferrer noopener" target="_blank">Jikan API</a> with <a href="https://myanimelist.net/" rel="noreferrer noopener" target="_blank">MyAnimeList.net</a> as the original source.</p>
      </div>
     </div>
    </div>

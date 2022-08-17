@@ -18,11 +18,17 @@ footer a {
   color: inherit;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1024px) {
   footer {
     width: 90%;
-    font-size: 15px;
+    font-size: 17px;
     border-top: 2px solid var(--dark-accent);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  footer {
+    font-size: 15px;
   }
 }
 

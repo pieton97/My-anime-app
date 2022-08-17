@@ -41,13 +41,16 @@
   -webkit-text-fill-color: transparent;
 }
 
-@media only screen and (max-width: 768px) {
-  .header {
-    font-size: 22px;
-  }
+@media only screen and (max-width: 1024px) {
   .header-wrapper {
     width: 90%;
     border-bottom: 2px solid var(--dark-accent);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .header {
+    font-size: 22px;
   }
   .right-header {
     font-size: 19px;
