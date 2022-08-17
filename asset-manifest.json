@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/My-anime-app/static/css/main.4b483d79.css",
-    "main.js": "/My-anime-app/static/js/main.76ff8fe5.js",
-    "static/media/emilia.png": "/My-anime-app/static/media/emilia.59012ea2815f591b642c.png",
+    "main.css": "/My-anime-app/static/css/main.c7a64f14.css",
+    "main.js": "/My-anime-app/static/js/main.cd22ae95.js",
+    "static/media/emilia2.png": "/My-anime-app/static/media/emilia2.eb8380f72320abe35cd4.png",
     "index.html": "/My-anime-app/index.html",
-    "main.4b483d79.css.map": "/My-anime-app/static/css/main.4b483d79.css.map",
-    "main.76ff8fe5.js.map": "/My-anime-app/static/js/main.76ff8fe5.js.map"
+    "main.c7a64f14.css.map": "/My-anime-app/static/css/main.c7a64f14.css.map",
+    "main.cd22ae95.js.map": "/My-anime-app/static/js/main.cd22ae95.js.map"
   },
   "entrypoints": [
-    "static/css/main.4b483d79.css",
-    "static/js/main.76ff8fe5.js"
+    "static/css/main.c7a64f14.css",
+    "static/js/main.cd22ae95.js"
   ]
 }
