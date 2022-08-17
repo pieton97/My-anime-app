@@ -4,32 +4,38 @@
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   box-sizing: border-box;
 }
-
 @media (prefers-reduced-motion: no-preference) {
   * {
     scroll-behavior: smooth;
   }
 }
-
 body{
   min-height: 100vh;
-  background-color: rgb(214, 214, 214);
+  background-color: var(--body-background);
 }
 
 :root {
+  --body-background: rgb(228, 228, 228);
+  --card-body: rgb(209, 209, 209);
+  --card-body-hover: rgb(67, 22, 139);
+  --main-text: #404041;
+
   --dark-accent: #404041;
   --dark-accent-hover: #606063;
-  --main-orange: #eb7c21;
-  --main-orange-hover: #eb7c21ad;
-  --main-blue: #049696;
-  --main-blue-hover: #049696ad;
-  --home-btns: #049696;
-  --home-btns-hover: #049696ad;
-}
-/* rgb(71, 71, 255)
-#f77d19 
-very dark : #0f0f0f
-rgb(133, 133, 253)
 
+  --primary: #8468b1;
+  --primary-hover: #a393c0;
+  --secondary: #51b372;
+  --secondary-hover: #87c09a;
+  
+  --home-btns: #8468b1;
+  --home-btns-hover: #a393c0;
+}
+/* 
+#eb7c21 orange, #eb7c21ad hover
+#049696 blue, #049696ad hover
+
+#8468b1 purple #a393c0 purple hover
+#51b372 green, #87c09a hover
 
 */

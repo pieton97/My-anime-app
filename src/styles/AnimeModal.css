@@ -47,7 +47,7 @@
   color: red;
 }
 .titleCloseBtn .back-btn {
-  color: black;
+  color: var(--main-text);
   font-size: 1rem;
   text-decoration: underline;
 }
@@ -59,7 +59,7 @@
 .modalContainer .body {
   display: flex;
   flex-direction: row;
-  gap: 8px;
+  gap: 15px;
   font-size: 12px;
 }
 
@@ -101,20 +101,20 @@
   border-radius: 3px;
   border: none;
   width: 100%;
-  background-color: var(--main-blue);
+  background-color: var(--primary);
   margin: 5px auto;
   padding: 6px;
   cursor: pointer;
   transition: all 0.5s;
 }
 .action-btn:hover {
-  background-color: var(--main-blue-hover);
+  background-color: var(--primary-hover);
 }
 .remove-btn {
-  background-color: var(--main-orange);
+  background-color: var(--secondary);
 }
 .remove-btn:hover {
-  background-color: #f3ad74;
+  background-color: var(--secondary-hover);
 }
 .info-container p {
   margin: 5px 3px;
@@ -163,7 +163,7 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
-  margin: 3px 0;
+  margin: 8px 0;
   font-size: 11px;
 }
 
@@ -320,7 +320,8 @@
   }
   .modal-img-container {
     margin: 4px auto;
-    height: 350px;
+    max-width: 280px;
+    height: 320px;
   }
   .action-btn {
     font-size: 12px;

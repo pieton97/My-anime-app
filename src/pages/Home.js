@@ -1,10 +1,10 @@
 import React from "react";
 import AnimeCard from "../components/AnimeCard";
 import SearchBtns from "../components/SearchBtns";
-import "../styles/Home.css";
-import homeImage from "../images/overlord-albedo.jpg";
 import PageChangeBtns from "../components/PageChangeBtns";
 import MyListCard from "../components/MyListCard";
+import homeImage from "../images/emilia.png";
+import "../styles/Home.css";
 
 const Home = (props) => {
  const fetchAnimeType = (type, resultTitle, searchID) => {
@@ -48,9 +48,9 @@ const Home = (props) => {
  };
 
  const searchHomeImg = () => {
-  props.setSearch("Overlord");
+  props.setSearch("Re:zero");
   let searchBtn = document.getElementById("home-search-btn");
-  setTimeout(() => searchBtn.click(), 600);
+  setTimeout(() => searchBtn.click(), 150);
  };
 
 
@@ -115,7 +115,7 @@ const Home = (props) => {
    </div>
 
    <details>
-    <summary id="my-list-anchor">MyList ({props.myList.length})</summary>
+    <summary id="my-list-anchor">My List ({props.myList.length})</summary>
     <div className="card-main">
     {props.myList.map((anime) => (
       <MyListCard

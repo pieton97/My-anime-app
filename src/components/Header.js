@@ -7,7 +7,7 @@ const Header = () => {
     <p>My<span className="blue-gradient">Anime</span>App</p>
     <div className="right-header">
       <a href="#result-anchor">Animes</a>
-      <a href="#my-list-anchor">myList</a>
+      <a href="#my-list-anchor">My List</a>
     </div>
    </div>
   </header>

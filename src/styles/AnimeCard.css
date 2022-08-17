@@ -1,7 +1,7 @@
 .card-body {
   margin: 10px;
   text-decoration: none;
-  background-color: rgb(194, 194, 194);
+  background-color: var(--card-body);
   color: black;
   border-radius: 3px;
   overflow: hidden;
@@ -25,7 +25,7 @@
   transition: transform .3s ease;
 }
 div.anime-cont:hover{
-  background-color: rgb(44, 0, 114);
+  background-color: var(--card-body-hover);
   color: whitesmoke;
   box-shadow: 0px 8px 15px rgb(22, 0, 58);
 }
@@ -63,11 +63,11 @@ div.anime-cont:hover{
   opacity: 0;
 }
 .anime-card-btn:hover {
-  background-color: var(--main-orange);
+  background-color: var(--secondary);
   color: whitesmoke;
 }
 .orange-hover:hover {
-  background-color: var(--main-blue);
+  background-color: var(--primary);
 }
 
 .card-body:hover .anime-card-btn {
@@ -77,6 +77,24 @@ div.anime-cont:hover{
 @media only screen and (max-width: 993px) {
   .anime-card-btn {
     opacity: 1;
+  }
+  .anime-card-btn {
+    background-color: var(--secondary);
+    color: whitesmoke;
+  }
+  .orange-hover {
+    background-color: var(--primary);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  div.anime-cont:hover{
+    background-color: rgb(194, 194, 194);
+    color: inherit;
+    box-shadow: none;
+  }
+  .card-body:hover .card-image {
+    transform: none; 
   }
 }
 
@@ -89,11 +107,6 @@ div.anime-cont:hover{
   }
   .card-image {
     height: 100%;
-  }
-  div.anime-cont:hover{
-    background-color: rgb(194, 194, 194);
-    color: inherit;
-    box-shadow: none;
   }
   .anime-details {
     padding: 10px 8px;
@@ -114,12 +127,5 @@ div.anime-cont:hover{
     width: 25px;
     height: 25px;
     font-size: 13px;
-  }
-  .anime-card-btn {
-    background-color: var(--main-orange);
-    color: whitesmoke;
-  }
-  .orange-hover {
-    background-color: var(--main-blue);
   }
 }

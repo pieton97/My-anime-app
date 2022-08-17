@@ -42,6 +42,16 @@ const AnimeModal = ({
     existInMyList >= 0 ?  setInMyList(true) : setInMyList(false);
   }, [myList]);
 
+  const splitSynopsis = (text) => {
+    const sentences = text.split(".")
+    const length = sentences.length;
+    const halfLength = Math.floor(sentences.length / 2);
+    const firstHalf = sentences.slice(0, halfLength).join(".")
+    const secondHalf = sentences.slice(halfLength, length - 1).join(".")
+    const lastSentence = sentences[length - 1]
+    return <>{firstHalf}.<br /><br />{secondHalf}.<br /><br />{lastSentence}</>;
+  };
+
   const openRelated = (mal_id, type) => {
     console.log(mal_id, type);
     (type === "anime" ? setIsModalOpen(false) : console.log("not closing"));
@@ -106,7 +116,7 @@ const AnimeModal = ({
   const membersValue = numberWithCommas(anime.members);
   const synopsis = ((anime.synopsis && anime.synopsis.length > 250)
     ? <>
-      {showMore ? anime.synopsis : `${anime.synopsis.substring(0, 350)}...`}
+      {showMore ? splitSynopsis(anime.synopsis) : `${anime.synopsis.substring(0, 350)}...`}
       <button className="show-synopsis" onClick={() => setShowMore(!showMore)}>
         {showMore ? "Show less" : "Show more"}
       </button>
