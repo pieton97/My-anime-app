@@ -42,8 +42,10 @@ const App = () => {
     setCurrentPage(maxPage);
     break;
    case "custom":
-    if (custom <= maxPage && custom > 0) setCurrentPage(custom);
-    else console.log("nice try it wont work");
+    if (custom > maxPage && currentPage !== maxPage) setCurrentPage(maxPage);
+    else if (custom < 1 && currentPage !== 1) setCurrentPage(1);
+    else if (custom <= maxPage && custom > 0) setCurrentPage(custom);
+    else console.log("nice try not refetching");
     break;
    default:
     console.log("pagination didnt work!!??");

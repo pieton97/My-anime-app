@@ -17,4 +17,4 @@
 
 [Live view](https://pieton97.github.io/My-anime-app/)
 
-![project image](src/images/anime-project.png)
+[![project picture](src/images/anime-project.png)](https://pieton97.github.io/My-anime-app/)
